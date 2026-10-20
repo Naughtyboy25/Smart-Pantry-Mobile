@@ -1,8 +1,10 @@
 package com.example.smartpantry.data.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 /**
  * Entity representing a single ingredient required by a recipe.
@@ -17,7 +19,8 @@ import androidx.room.ForeignKey;
         parentColumns = "id",
         childColumns = "recipe_id",
         onDelete = ForeignKey.CASCADE
-    )
+    ),
+    indices = @Index("recipe_id")
 )
 public class RecipeIngredient {
 
@@ -25,11 +28,13 @@ public class RecipeIngredient {
     public long recipeId;
 
     @ColumnInfo(name = "ingredient_name")
+    @NonNull
     public String ingredientName; // normalized: lowercase, singular
 
     @ColumnInfo(name = "quantity")
     public double quantity;
 
     @ColumnInfo(name = "unit")
+    @NonNull
     public String unit; // same unit enum as PantryItem
 }

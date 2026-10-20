@@ -1,8 +1,10 @@
 package com.example.smartpantry.data.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
@@ -16,7 +18,8 @@ import androidx.room.PrimaryKey;
         parentColumns = "id",
         childColumns = "recipe_id",
         onDelete = ForeignKey.CASCADE
-    )
+    ),
+    indices = @Index("recipe_id")
 )
 public class RecipeStep {
 
@@ -30,5 +33,6 @@ public class RecipeStep {
     public int stepNumber;
 
     @ColumnInfo(name = "instruction")
+    @NonNull
     public String instruction;
 }

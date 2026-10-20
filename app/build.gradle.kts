@@ -1,7 +1,5 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt") // Required for Room annotation processing
+    alias(libs.plugins.android.application)
 }
 
 android {
@@ -29,12 +27,22 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     buildFeatures {
         viewBinding = true
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Gradle 9.5 bundles kotlinx-metadata-jvm 2.0.0 which cannot read Kotlin 2.x metadata.
+        // Force Kotlin 1.9 stdlib so no metadata >= 2.1 reaches javac (this is a Java-only project).
+        force("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+        force("org.jetbrains.kotlin:kotlin-stdlib-common:1.9.24")
+        force("androidx.room:room-runtime:2.6.1")
+        force("androidx.room:room-common:2.6.1")
+        force("androidx.room:room-ktx:2.6.1")
+        force("androidx.room:room-compiler:2.6.1")
+        force("androidx.room:room-compiler-processing:2.6.1")
     }
 }
 
@@ -52,14 +60,13 @@ dependencies {
     // Lifecycle & ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation(libs.room.common)
 
     // Room Database
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version") // Java-only project: javac APT instead of kapt
     implementation("androidx.room:room-ktx:$room_version")
-
-    // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     // Coroutines
@@ -67,7 +74,7 @@ dependencies {
 
     // Glide (image loading - optional for recipe images)
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

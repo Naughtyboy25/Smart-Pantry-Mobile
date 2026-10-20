@@ -1,5 +1,6 @@
 package com.example.smartpantry.data.dao;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Query;
 
@@ -54,9 +55,9 @@ public interface RecipeIngredientDao {
      * POJO for "Almost There" query result.
      */
     class AlmostThereResult {
-        public long recipeId;
-        public int matchedCount;
-        public int totalCount;
+        @ColumnInfo(name = "recipe_id") public long recipeId;
+        @ColumnInfo(name = "matched_count") public int matchedCount;
+        @ColumnInfo(name = "total_count") public int totalCount;
     }
 
     @Query("SELECT * FROM recipe_ingredients WHERE recipe_id = :recipeId")

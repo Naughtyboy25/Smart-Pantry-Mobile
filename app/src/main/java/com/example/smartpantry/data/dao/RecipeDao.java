@@ -2,9 +2,11 @@ package com.example.smartpantry.data.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Embedded;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Relation;
 import androidx.room.Transaction;
 
 import com.example.smartpantry.data.entity.Recipe;
@@ -56,8 +58,12 @@ public interface RecipeDao {
      * Populated by Room via @Transaction.
      */
     class RecipeWithDetails {
-        public Recipe recipe;
+        @Embedded public Recipe recipe;
+
+        @Relation(parentColumn = "id", entityColumn = "recipe_id")
         public List<RecipeIngredient> ingredients;
+
+        @Relation(parentColumn = "id", entityColumn = "recipe_id")
         public List<RecipeStep> steps;
     }
 }

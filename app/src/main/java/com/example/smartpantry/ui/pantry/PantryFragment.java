@@ -17,7 +17,7 @@ import com.example.smartpantry.data.entity.PantryItem;
 /**
  * Fragment for Pantry List screen (first tab).
  * Displays all pantry items in a RecyclerView.
- * FAB navigates to AddEditPantryFragment for adding new items.
+ * Navigates to AddEditPantryFragment for adding new items.
  * Click item to edit, long-press to delete.
  */
 public class PantryFragment extends Fragment implements PantryAdapter.OnItemClickListener, PantryAdapter.OnItemDeleteListener {

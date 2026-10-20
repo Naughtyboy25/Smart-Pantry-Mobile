@@ -1,5 +1,6 @@
 package com.example.smartpantry.data.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -14,6 +15,7 @@ public class Recipe {
     @PrimaryKey(autoGenerate = true)
     public long id;
 
+    @NonNull
     public String name;
 
     @ColumnInfo(name = "description")
@@ -23,5 +25,5 @@ public class Recipe {
     public int servings;
 
     @ColumnInfo(name = "prep_time_minutes")
-    public long prepTimeMinutes;
+    public int prepTimeMinutes;
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Pure logic class for strict recipe-to-pantry matching.
+ * Class for strict recipe-to-pantry matching.
  * Handles:
  *  - Unit normalization (convert all to base units: g, ml, pcs)
  *  - Name normalization (lowercase, singularize plurals)
