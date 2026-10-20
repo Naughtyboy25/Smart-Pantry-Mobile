@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pantryFragment">
+
+    <!-- Pantry List (Tab 1) -->
+    <fragment
+        android:id="@+id/pantryFragment"
+        android:name="com.example.smartpantry.ui.pantry.PantryFragment"
+        android:label="Pantry"
+        tools:layout="@layout/fragment_pantry">
+        <action
+            android:id="@+id/action_pantryFragment_to_addEditPantryFragment"
+            app:destination="@id/addEditPantryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <!-- Suggested Recipes (Tab 2) -->
+    <fragment
+        android:id="@+id/suggestedFragment"
+        android:name="com.example.smartpantry.ui.suggested.SuggestedFragment"
+        android:label="Suggested"
+        tools:layout="@layout/fragment_suggested">
+        <action
+            android:id="@+id/action_suggestedFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <!-- Settings (Tab 3) -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.smartpantry.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <!-- Add/Edit Pantry Item (Modal from Pantry) -->
+    <fragment
+        android:id="@+id/addEditPantryFragment"
+        android:name="com.example.smartpantry.ui.addedit.AddEditPantryFragment"
+        android:label="Add Ingredient"
+        tools:layout="@layout/fragment_add_edit_pantry">
+        <argument
+            android:name="mode"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="itemId"
+            app:argType="long"
+            app:nullable="true" />
+    </fragment>
+
+    <!-- Recipe Detail (from Suggested) -->
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.example.smartpantry.ui.detail.RecipeDetailFragment"
+        android:label="Recipe Detail"
+        tools:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="recipeId"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>
