@@ -13,6 +13,8 @@ import com.example.smartpantry.data.entity.RecipeIngredient;
 import com.example.smartpantry.data.entity.RecipeStep;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Repository for recipes, ingredients, and steps.
@@ -24,6 +26,7 @@ public class RecipeRepository {
     private final RecipeDao recipeDao;
     private final RecipeIngredientDao ingredientDao;
     private final RecipeStepDao stepDao;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public RecipeRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
@@ -62,11 +65,24 @@ public class RecipeRepository {
      * if the recipe table is empty. Runs on background thread.
      */
     public void seedIfEmpty(Application application) {
-        // TODO: Parse assets/recipes.json and insert via DAOs using RecipeSeeder
+        executor.execute(() -> {
+            if (recipeDao.countRecipes() == 0) {
+                RecipeSeeder.seedFromAssets(application, recipeDao, ingredientDao, stepDao);
+            }
+        });
     }
 
     /** Resets recipe database to defaults (clears and re-seeds). */
     public void resetToDefaults(Application application) {
-        // TODO: Clear and re-seed
+        executor.execute(() -> {
+            recipeDao.clearAllSteps();
+            recipeDao.clearAllIngredients();
+            recipeDao.clearAllRecipes();
+            RecipeSeeder.seedFromAssets(application, recipeDao, ingredientDao, stepDao);
+        });
+    }
+
+    public void shutdown() {
+        executor.shutdown();
     }
 }

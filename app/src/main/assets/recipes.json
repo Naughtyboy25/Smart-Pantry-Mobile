@@ -1,0 +1,541 @@
+[
+  {
+    "name": "Bobotie",
+    "description": "Cape Malay spiced minced meat bake with egg custard topping",
+    "servings": 6,
+    "prepTimeMinutes": 60,
+    "ingredients": [
+      { "ingredientName": "beef mince", "quantity": 500, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "bread", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "milk", "quantity": 250, "unit": "ml" },
+      { "ingredientName": "curry powder", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "turmeric", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "cumin", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "coriander", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "apricot jam", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "vinegar", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "worcestershire sauce", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "sugar", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "black pepper", "quantity": 0.5, "unit": "tsp" },
+      { "ingredientName": "egg", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "bay leaf", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "almonds", "quantity": 50, "unit": "g" },
+      { "ingredientName": "raisins", "quantity": 50, "unit": "g" },
+      { "ingredientName": "lemon", "quantity": 1, "unit": "pcs" }
+    ],
+    "steps": [
+      "Preheat oven to 180°C. Soak bread in half the milk.",
+      "Sauté onion and garlic until soft. Add beef mince and brown.",
+      "Add curry powder, turmeric, cumin, coriander. Cook 2 minutes.",
+      "Squeeze milk from bread, reserve milk. Crumble bread into mince.",
+      "Stir in jam, vinegar, Worcestershire, sugar, salt, pepper.",
+      "Add bay leaves, almonds, raisins, lemon juice. Simmer 10 minutes.",
+      "Transfer to baking dish. Beat eggs with reserved milk, pour over.",
+      "Bake 35-40 minutes until custard is golden and set.",
+      "Rest 10 minutes before serving with yellow rice and chutney."
+    ]
+  },
+  {
+    "name": "Braai Broodjies",
+    "description": "Classic South African grilled cheese with tomato, onion, and chutney",
+    "servings": 4,
+    "prepTimeMinutes": 15,
+    "ingredients": [
+      { "ingredientName": "bread", "quantity": 8, "unit": "pcs" },
+      { "ingredientName": "cheddar cheese", "quantity": 200, "unit": "g" },
+      { "ingredientName": "tomato", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "onion", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "fruit chutney", "quantity": 4, "unit": "tbsp" },
+      { "ingredientName": "butter", "quantity": 50, "unit": "g" }
+    ],
+    "steps": [
+      "Butter one side of each bread slice.",
+      "Spread chutney on unbuttered side of 4 slices.",
+      "Layer cheese, sliced tomato, and sliced onion on chutney side.",
+      "Top with remaining bread, buttered side out.",
+      "Grill over medium coals 3-4 minutes per side until golden and cheese melts."
+    ]
+  },
+  {
+    "name": "Boerewors",
+    "description": "Traditional South African beef sausage with coriander and spices",
+    "servings": 8,
+    "prepTimeMinutes": 120,
+    "ingredients": [
+      { "ingredientName": "beef mince", "quantity": 1, "unit": "kg" },
+      { "ingredientName": "pork mince", "quantity": 250, "unit": "g" },
+      { "ingredientName": "coriander seeds", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "black pepper", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "nutmeg", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "cloves", "quantity": 0.5, "unit": "tsp" },
+      { "ingredientName": "allspice", "quantity": 0.5, "unit": "tsp" },
+      { "ingredientName": "salt", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "vinegar", "quantity": 60, "unit": "ml" },
+      { "ingredientName": "sausage casings", "quantity": 3, "unit": "m" }
+    ],
+    "steps": [
+      "Toast coriander seeds, crush coarsely.",
+      "Mix beef, pork, all spices, salt, and vinegar.",
+      "Knead vigorously 10 minutes until sticky.",
+      "Refrigerate 2 hours for flavours to develop.",
+      "Soak casings in warm water. Thread onto stuffer.",
+      "Stuff casings firmly, twist into 20cm links.",
+      "Grill over medium coals 15-20 minutes, turning often."
+    ]
+  },
+  {
+    "name": "Bunny Chow",
+    "description": "Durban street food: hollowed bread loaf filled with spicy bean curry",
+    "servings": 4,
+    "prepTimeMinutes": 45,
+    "ingredients": [
+      { "ingredientName": "white bread loaf", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "sugar beans", "quantity": 400, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "ginger", "quantity": 30, "unit": "g" },
+      { "ingredientName": "curry powder", "quantity": 3, "unit": "tbsp" },
+      { "ingredientName": "turmeric", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "cumin", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "coriander", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "chilli powder", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "tomato", "quantity": 400, "unit": "g" },
+      { "ingredientName": "potato", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "coriander leaves", "quantity": 1, "unit": "cup" }
+    ],
+    "steps": [
+      "Soak beans overnight. Cook until tender, 45 minutes.",
+      "Sauté onion, garlic, ginger in oil until golden.",
+      "Add all spices, cook 2 minutes. Add chopped tomato, cook down.",
+      "Add cooked beans, diced potato, salt, and 2 cups water.",
+      "Simmer 20 minutes until potato tender and sauce thick.",
+      "Hollow out bread loaf, leaving 2cm walls.",
+      "Fill with hot curry. Garnish with coriander. Serve immediately."
+    ]
+  },
+  {
+    "name": "Malva Pudding",
+    "description": "Sweet spongy apricot pudding with creamy sauce",
+    "servings": 8,
+    "prepTimeMinutes": 45,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 250, "unit": "g" },
+      { "ingredientName": "sugar", "quantity": 200, "unit": "g" },
+      { "ingredientName": "egg", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "apricot jam", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "vinegar", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "baking soda", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "milk", "quantity": 250, "unit": "ml" },
+      { "ingredientName": "butter", "quantity": 60, "unit": "g" },
+      { "ingredientName": "cream", "quantity": 250, "unit": "ml" },
+      { "ingredientName": "brown sugar", "quantity": 100, "unit": "g" },
+      { "ingredientName": "water", "quantity": 125, "unit": "ml" }
+    ],
+    "steps": [
+      "Preheat oven to 180°C. Grease 2L baking dish.",
+      "Sift flour. Cream butter and sugar. Beat in eggs, then jam.",
+      "Mix soda with milk. Add vinegar to milk mixture.",
+      "Alternate adding flour and milk to butter mixture.",
+      "Pour into dish. Bake 30 minutes until risen and golden.",
+      "For sauce: melt butter, cream, brown sugar, water together.",
+      "Pour half sauce over hot pudding. Rest 10 minutes.",
+      "Serve warm with remaining sauce and custard or ice cream."
+    ]
+  },
+  {
+    "name": "Potjiekos",
+    "description": "Slow-cooked layered stew in cast-iron pot over coals",
+    "servings": 8,
+    "prepTimeMinutes": 180,
+    "ingredients": [
+      { "ingredientName": "beef chuck", "quantity": 1.5, "unit": "kg" },
+      { "ingredientName": "onion", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 6, "unit": "pcs" },
+      { "ingredientName": "carrot", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "potato", "quantity": 6, "unit": "pcs" },
+      { "ingredientName": "cabbage", "quantity": 0.5, "unit": "pcs" },
+      { "ingredientName": "green beans", "quantity": 300, "unit": "g" },
+      { "ingredientName": "tomato", "quantity": 400, "unit": "g" },
+      { "ingredientName": "beef stock", "quantity": 1, "unit": "l" },
+      { "ingredientName": "red wine", "quantity": 250, "unit": "ml" },
+      { "ingredientName": "worcestershire sauce", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "bay leaf", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "thyme", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "black pepper", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" }
+    ],
+    "steps": [
+      "Heat oil in potjie over coals. Brown meat in batches. Remove.",
+      "Sauté onion and garlic. Return meat. Add stock, wine, spices.",
+      "Simmer 1 hour. Layer carrots and potatoes on top.",
+      "Add tomato, green beans, cabbage in layers. Do not stir!",
+      "Cover. Simmer 1 hour more until meat is tender.",
+      "Gently mix before serving. Serve with pap or rice."
+    ]
+  },
+  {
+    "name": "Chakalaka",
+    "description": "Spicy bean and vegetable relish, essential braai side dish",
+    "servings": 6,
+    "prepTimeMinutes": 30,
+    "ingredients": [
+      { "ingredientName": "baked beans", "quantity": 400, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "green pepper", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "carrot", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "cabbage", "quantity": 200, "unit": "g" },
+      { "ingredientName": "tomato", "quantity": 400, "unit": "g" },
+      { "ingredientName": "curry powder", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "chilli flakes", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "sugar", "quantity": 1, "unit": "tsp" }
+    ],
+    "steps": [
+      "Grate carrot. Dice onion, pepper. Shred cabbage.",
+      "Sauté onion, garlic in oil. Add spices, cook 1 minute.",
+      "Add carrot, pepper, cabbage. Cook 5 minutes.",
+      "Add grated tomato, baked beans, salt, sugar.",
+      "Simmer 15 minutes until thick. Adjust seasoning.",
+      "Serve warm or cold with pap, bread, or wors."
+    ]
+  },
+  {
+    "name": "Melktert",
+    "description": "Classic South African cinnamon-dusted milk tart",
+    "servings": 8,
+    "prepTimeMinutes": 60,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 200, "unit": "g" },
+      { "ingredientName": "sugar", "quantity": 100, "unit": "g" },
+      { "ingredientName": "butter", "quantity": 100, "unit": "g" },
+      { "ingredientName": "egg", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "milk", "quantity": 1, "unit": "l" },
+      { "ingredientName": "cornflour", "quantity": 4, "unit": "tbsp" },
+      { "ingredientName": "vanilla", "quantity": 2, "unit": "tsp" },
+      { "ingredientName": "cinnamon", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "salt", "quantity": 0.5, "unit": "tsp" }
+    ],
+    "steps": [
+      "For crust: rub butter into flour, sugar, salt. Add egg, form dough.",
+      "Press into 23cm tart tin. Chill 30 minutes.",
+      "Bake blind 15 minutes at 180°C. Cool.",
+      "For filling: heat milk. Mix cornflour, sugar, eggs, vanilla.",
+      "Temper egg mixture with hot milk. Return to pot, thicken.",
+      "Pour into crust. Chill 2 hours.",
+      "Dust generously with cinnamon before serving."
+    ]
+  },
+  {
+    "name": "Sosaties",
+    "description": "Marinated lamb kebabs with apricots and onions",
+    "servings": 6,
+    "prepTimeMinutes": 180,
+    "ingredients": [
+      { "ingredientName": "lamb", "quantity": 1.2, "unit": "kg" },
+      { "ingredientName": "onion", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "dried apricots", "quantity": 200, "unit": "g" },
+      { "ingredientName": "curry powder", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "turmeric", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "cumin", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "coriander", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "vinegar", "quantity": 125, "unit": "ml" },
+      { "ingredientName": "apricot jam", "quantity": 3, "unit": "tbsp" },
+      { "ingredientName": "garlic", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "black pepper", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "skewers", "quantity": 12, "unit": "pcs" }
+    ],
+    "steps": [
+      "Cube lamb. Mix all marinade ingredients.",
+      "Marinate lamb 4 hours or overnight.",
+      "Soak wooden skewers 30 minutes.",
+      "Thread lamb, onion, apricot alternately onto skewers.",
+      "Grill over medium coals 12-15 minutes, turning and basting."
+    ]
+  },
+  {
+    "name": "Vetkoek",
+    "description": "Deep-fried dough balls, served savory with mince or sweet with jam",
+    "servings": 12,
+    "prepTimeMinutes": 60,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 500, "unit": "g" },
+      { "ingredientName": "sugar", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "instant yeast", "quantity": 10, "unit": "g" },
+      { "ingredientName": "water", "quantity": 300, "unit": "ml" },
+      { "ingredientName": "vegetable oil", "quantity": 1, "unit": "l" },
+      { "ingredientName": "beef mince", "quantity": 500, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "curry powder", "quantity": 1, "unit": "tbsp" }
+    ],
+    "steps": [
+      "Mix flour, sugar, salt, yeast. Add warm water, knead 10 minutes.",
+      "Cover. Rise 1 hour until doubled.",
+      "For mince: brown mince with onion, curry, salt.",
+      "Knock down dough. Divide into 12 balls. Rise 20 minutes.",
+      "Heat oil to 180°C. Fry balls 3-4 minutes until golden.",
+      "Drain. Split open, fill with hot mince or jam."
+    ]
+  },
+  {
+    "name": "Cape Malay Curry",
+    "description": "Fragrant mild curry with fruit and spices",
+    "servings": 6,
+    "prepTimeMinutes": 90,
+    "ingredients": [
+      { "ingredientName": "chicken", "quantity": 1.5, "unit": "kg" },
+      { "ingredientName": "onion", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 6, "unit": "pcs" },
+      { "ingredientName": "ginger", "quantity": 50, "unit": "g" },
+      { "ingredientName": "curry powder", "quantity": 3, "unit": "tbsp" },
+      { "ingredientName": "turmeric", "quantity": 2, "unit": "tsp" },
+      { "ingredientName": "cumin", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "coriander", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "cinnamon stick", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "cardamom", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "tomato", "quantity": 400, "unit": "g" },
+      { "ingredientName": "apricot jam", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "vinegar", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "potato", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "coconut milk", "quantity": 400, "unit": "ml" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" }
+    ],
+    "steps": [
+      "Brown chicken in oil. Remove.",
+      "Sauté onion, garlic, ginger, whole spices.",
+      "Add powdered spices, cook 2 minutes.",
+      "Add tomato, jam, vinegar. Cook down.",
+      "Return chicken. Add coconut milk, potatoes.",
+      "Simmer 45 minutes until chicken tender.",
+      "Serve with basmati rice, sambals, and roti."
+    ]
+  },
+  {
+    "name": "Pap en Sous",
+    "description": "Stiff maize meal porridge with tomato-onion sauce",
+    "servings": 6,
+    "prepTimeMinutes": 40,
+    "ingredients": [
+      { "ingredientName": "maize meal", "quantity": 500, "unit": "g" },
+      { "ingredientName": "water", "quantity": 2, "unit": "l" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "butter", "quantity": 50, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "tomato", "quantity": 6, "unit": "pcs" },
+      { "ingredientName": "tomato paste", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "sugar", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "vegetable oil", "quantity": 30, "unit": "ml" }
+    ],
+    "steps": [
+      "Boil water with salt. Slowly whisk in maize meal.",
+      "Reduce heat. Cover. Simmer 30 minutes, stirring often.",
+      "Stir in butter. Keep warm.",
+      "For sauce: sauté onion, garlic. Add grated tomato, paste.",
+      "Simmer 15 minutes. Add sugar, salt.",
+      "Serve pap topped with sauce."
+    ]
+  },
+  {
+    "name": "Koeksisters",
+    "description": "Twisted syrupy doughnuts, crisp outside, soft inside",
+    "servings": 24,
+    "prepTimeMinutes": 120,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 500, "unit": "g" },
+      { "ingredientName": "baking powder", "quantity": 2, "unit": "tsp" },
+      { "ingredientName": "salt", "quantity": 0.5, "unit": "tsp" },
+      { "ingredientName": "butter", "quantity": 50, "unit": "g" },
+      { "ingredientName": "egg", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "milk", "quantity": 200, "unit": "ml" },
+      { "ingredientName": "vegetable oil", "quantity": 1, "unit": "l" },
+      { "ingredientName": "sugar", "quantity": 1, "unit": "kg" },
+      { "ingredientName": "water", "quantity": 500, "unit": "ml" },
+      { "ingredientName": "lemon juice", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "ginger", "quantity": 20, "unit": "g" }
+    ],
+    "steps": [
+      "For syrup: boil sugar, water, lemon, ginger 10 minutes. Chill.",
+      "Rub butter into flour, baking powder, salt.",
+      "Add egg and milk. Form soft dough. Rest 30 minutes.",
+      "Roll thin. Cut 10cm strips. Braid 3 strips, pinch ends.",
+      "Heat oil to 180°C. Fry 2 minutes until golden.",
+      "Drain 30 seconds. Plunge into ice-cold syrup 1 minute.",
+      "Remove with slotted spoon. Cool on rack."
+    ]
+  },
+  {
+    "name": "Snoek Braai",
+    "description": "West Coast snoek grilled with apricot glaze",
+    "servings": 6,
+    "prepTimeMinutes": 30,
+    "ingredients": [
+      { "ingredientName": "snoek", "quantity": 1.5, "unit": "kg" },
+      { "ingredientName": "apricot jam", "quantity": 4, "unit": "tbsp" },
+      { "ingredientName": "vinegar", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "worcestershire sauce", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "garlic", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "lemon", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "butter", "quantity": 50, "unit": "g" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "black pepper", "quantity": 1, "unit": "tsp" }
+    ],
+    "steps": [
+      "Mix jam, vinegar, Worcestershire, garlic, lemon juice, butter.",
+      "Clean snoek. Score skin. Season with salt, pepper.",
+      "Grill skin-side down 10 minutes.",
+      "Turn. Baste with glaze. Grill 5 minutes.",
+      "Turn again. Baste. Grill 5 minutes until cooked.",
+      "Serve with lemon wedges and sweet potato."
+    ]
+  },
+  {
+    "name": "Waterblommetjiebredie",
+    "description": "Western Cape lamb stew with waterblommetjies (pondweed)",
+    "servings": 6,
+    "prepTimeMinutes": 120,
+    "ingredients": [
+      { "ingredientName": "lamb", "quantity": 1, "unit": "kg" },
+      { "ingredientName": "onion", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "waterblommetjies", "quantity": 500, "unit": "g" },
+      { "ingredientName": "potato", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "sorrel", "quantity": 100, "unit": "g" },
+      { "ingredientName": "vegetable stock", "quantity": 750, "unit": "ml" },
+      { "ingredientName": "white wine", "quantity": 125, "unit": "ml" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "black pepper", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" }
+    ],
+    "steps": [
+      "Brown lamb in oil. Remove.",
+      "Sauté onion, garlic. Return lamb. Add stock, wine.",
+      "Simmer 1 hour. Add diced potato, waterblommetjies.",
+      "Cook 20 minutes. Add chopped sorrel last 5 minutes.",
+      "Season. Serve with rice or mashed potato."
+    ]
+  },
+  {
+    "name": "Hertzoggies",
+    "description": "Coconut-topped apricot jam tartlets named after PM Hertzog",
+    "servings": 24,
+    "prepTimeMinutes": 60,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 250, "unit": "g" },
+      { "ingredientName": "sugar", "quantity": 125, "unit": "g" },
+      { "ingredientName": "butter", "quantity": 125, "unit": "g" },
+      { "ingredientName": "egg", "quantity": 1, "unit": "pcs" },
+      { "ingredientName": "baking powder", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "apricot jam", "quantity": 250, "unit": "g" },
+      { "ingredientName": "coconut", "quantity": 150, "unit": "g" },
+      { "ingredientName": "egg white", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "castor sugar", "quantity": 100, "unit": "g" }
+    ],
+    "steps": [
+      "Rub butter into flour, sugar, baking powder. Add egg.",
+      "Press into mini tart tins. Fill with jam.",
+      "Beat egg whites stiff. Fold in castor sugar, coconut.",
+      "Pipe meringue over jam.",
+      "Bake 180°C for 15 minutes until meringue golden."
+    ]
+  },
+  {
+    "name": "Bokkoms",
+    "description": "West Coast salted dried mullet, eaten as snack",
+    "servings": 10,
+    "prepTimeMinutes": 1440,
+    "ingredients": [
+      { "ingredientName": "mullet", "quantity": 2, "unit": "kg" },
+      { "ingredientName": "coarse salt", "quantity": 500, "unit": "g" },
+      { "ingredientName": "vinegar", "quantity": 250, "unit": "ml" },
+      { "ingredientName": "water", "quantity": 2, "unit": "l" }
+    ],
+    "steps": [
+      "Clean fish, leave whole. Rinse in vinegar water.",
+      "Layer fish and salt in container. Refrigerate 24 hours.",
+      "Rinse excess salt. Hang in cool, dry, breezy place.",
+      "Dry 3-5 days until firm. Store in paper bag.",
+      "Eat raw, or grill briefly. Serve with bread and apricot jam."
+    ]
+  },
+  {
+    "name": "Samp and Beans",
+    "description": "Xhosa staple: crushed maize and sugar beans slow-cooked",
+    "servings": 8,
+    "prepTimeMinutes": 180,
+    "ingredients": [
+      { "ingredientName": "samp", "quantity": 500, "unit": "g" },
+      { "ingredientName": "sugar beans", "quantity": 500, "unit": "g" },
+      { "ingredientName": "onion", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "garlic", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "potato", "quantity": 3, "unit": "pcs" },
+      { "ingredientName": "carrot", "quantity": 2, "unit": "pcs" },
+      { "ingredientName": "vegetable stock", "quantity": 2, "unit": "l" },
+      { "ingredientName": "curry powder", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "turmeric", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tbsp" },
+      { "ingredientName": "vegetable oil", "quantity": 60, "unit": "ml" }
+    ],
+    "steps": [
+      "Soak samp and beans separately overnight.",
+      "Cook beans 45 minutes. Add samp, cook 1 hour.",
+      "Sauté onion, garlic. Add spices, vegetables.",
+      "Combine with samp and beans. Add stock.",
+      "Simmer 1 hour until creamy. Stir often."
+    ]
+  },
+  {
+    "name": "Amagwinya",
+    "description": "Township-style vetkoek with polony, cheese, and atchar",
+    "servings": 12,
+    "prepTimeMinutes": 60,
+    "ingredients": [
+      { "ingredientName": "flour", "quantity": 500, "unit": "g" },
+      { "ingredientName": "sugar", "quantity": 2, "unit": "tbsp" },
+      { "ingredientName": "salt", "quantity": 1, "unit": "tsp" },
+      { "ingredientName": "instant yeast", "quantity": 10, "unit": "g" },
+      { "ingredientName": "water", "quantity": 300, "unit": "ml" },
+      { "ingredientName": "vegetable oil", "quantity": 1, "unit": "l" },
+      { "ingredientName": "polony", "quantity": 500, "unit": "g" },
+      { "ingredientName": "cheddar cheese", "quantity": 200, "unit": "g" },
+      { "ingredientName": "atchar", "quantity": 200, "unit": "g" }
+    ],
+    "steps": [
+      "Make dough as for vetkoek. Rise 1 hour.",
+      "Fry balls in 180°C oil until golden. Drain.",
+      "Slice open. Fill with polony slices, cheese, atchar."
+    ]
+  },
+  {
+    "name": "Peppermint Crisp Tart",
+    "description": "No-bake fridge tart with Peppermint Crisp chocolate and caramel",
+    "servings": 12,
+    "prepTimeMinutes": 30,
+    "ingredients": [
+      { "ingredientName": "tennis biscuits", "quantity": 250, "unit": "g" },
+      { "ingredientName": "butter", "quantity": 100, "unit": "g" },
+      { "ingredientName": "caramel treat", "quantity": 400, "unit": "g" },
+      { "ingredientName": "whipped cream", "quantity": 500, "unit": "ml" },
+      { "ingredientName": "peppermint crisp", "quantity": 4, "unit": "pcs" },
+      { "ingredientName": "dark chocolate", "quantity": 100, "unit": "g" }
+    ],
+    "steps": [
+      "Crush biscuits. Mix with melted butter. Press into 23cm tin.",
+      "Chill 15 minutes.",
+      "Beat cream until stiff. Fold in caramel, 3 crushed Peppermint Crisp.",
+      "Spread over base. Chill 2 hours.",
+      "Top with grated chocolate and remaining crushed Peppermint Crisp."
+    ]
+  }
+]
