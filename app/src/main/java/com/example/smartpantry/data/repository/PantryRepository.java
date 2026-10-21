@@ -9,15 +9,18 @@ import com.example.smartpantry.data.database.AppDatabase;
 import com.example.smartpantry.data.entity.PantryItem;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Repository for pantry items.
  * Mediates between ViewModels and PantryItemDao.
- * Runs write operations on background thread.
+ * Runs write operations on background thread via ExecutorService.
  */
 public class PantryRepository {
 
     private final PantryItemDao dao;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public PantryRepository(Application application) {
         dao = AppDatabase.getInstance(application).pantryItemDao();
@@ -35,26 +38,31 @@ public class PantryRepository {
 
     /** Inserts a new pantry item on background thread. */
     public void insert(PantryItem item) {
-        // TODO: Execute on background thread
+        executor.execute(() -> dao.insert(item));
     }
 
     /** Updates an existing pantry item on background thread. */
     public void update(PantryItem item) {
-        // TODO: Execute on background thread
+        executor.execute(() -> dao.update(item));
     }
 
     /** Deletes a pantry item by ID on background thread. */
     public void deleteById(long itemId) {
-        // TODO: Execute on background thread
+        executor.execute(() -> dao.deleteById(itemId));
     }
 
     /** Deletes all expired pantry items (expiry_date < now). */
     public void deleteExpired(long now) {
-        // TODO: Execute on background thread
+        executor.execute(() -> dao.deleteExpired(now));
     }
 
     /** Clears all pantry data (used in Settings reset). */
     public void clearAll() {
-        // TODO: Execute on background thread
+        executor.execute(() -> dao.clearAll());
+    }
+
+    /** Shuts down the background executor. Call in Application onTerminate if needed. */
+    public void shutdown() {
+        executor.shutdown();
     }
 }

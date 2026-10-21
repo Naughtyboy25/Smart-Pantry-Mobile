@@ -39,11 +39,17 @@ public class PantryViewModel extends AndroidViewModel {
 
     /** Deletes all expired items (expiry_date < now). */
     public void deleteExpiredItems() {
-        // TODO: Call repository.deleteExpired(System.currentTimeMillis())
+        repository.deleteExpired(System.currentTimeMillis());
     }
 
     /** Clears all pantry data (used from Settings). */
     public void clearAllData() {
         repository.clearAll();
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        repository.shutdown();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.smartpantry.ui.pantry;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,40 +14,76 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.smartpantry.data.entity.PantryItem;
+import com.example.smartpantry.databinding.FragmentPantryBinding;
 
 /**
  * Fragment for Pantry List screen (first tab).
  * Displays all pantry items in a RecyclerView.
- * Navigates to AddEditPantryFragment for adding new items.
+ * FAB navigates to AddEditPantryFragment for adding new items.
  * Click item to edit, long-press to delete.
  */
 public class PantryFragment extends Fragment implements PantryAdapter.OnItemClickListener, PantryAdapter.OnItemDeleteListener {
 
+    private FragmentPantryBinding binding;
     private PantryViewModel viewModel;
     private PantryAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: Inflate fragment_pantry.xml via ViewBinding
-        return inflater.inflate(0, container, false);
+        binding = FragmentPantryBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PantryViewModel.class);
-        // TODO: setup RecyclerView with adapter
-        // TODO: observe pantry items LiveData
-        // TODO: setup FAB click listener for navigation
+        setupRecyclerView();
+        observePantryItems();
+        setupFab();
+    }
+
+    private void setupRecyclerView() {
+        adapter = new PantryAdapter(this, this);
+        binding.rvPantry.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvPantry.setAdapter(adapter);
+    }
+
+    private void observePantryItems() {
+        viewModel.getAllPantryItems().observe(getViewLifecycleOwner(), items -> {
+            adapter.submitList(items);
+            binding.tvEmptyState.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
+            binding.rvPantry.setVisibility(items.isEmpty() ? View.GONE : View.VISIBLE);
+        });
+    }
+
+    private void setupFab() {
+        binding.fabAdd.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_pantryFragment_to_addEditPantryFragment);
+        });
     }
 
     @Override
     public void onItemClick(PantryItem item) {
-        // TODO: Navigate to AddEditPantryFragment in EDIT mode with itemId
+        Bundle args = new Bundle();
+        args.putString("mode", "EDIT");
+        args.putLong("itemId", item.id);
+        Navigation.findNavController(requireView()).navigate(R.id.action_pantryFragment_to_addEditPantryFragment, args);
     }
 
     @Override
     public void onItemDelete(PantryItem item) {
-        // TODO: Show confirmation dialog then call viewModel.deleteItem(item.id)
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Delete Item")
+                .setMessage("Remove " + item.ingredientName + " from pantry?")
+                .setPositiveButton("Delete", (dialog, which) -> viewModel.deleteItem(item.id))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
