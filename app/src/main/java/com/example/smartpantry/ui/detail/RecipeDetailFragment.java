@@ -13,6 +13,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.smartpantry.databinding.FragmentRecipeDetailBinding;
+
 /**
  * Fragment for Recipe Detail screen.
  * Displays full ingredient list and preparation steps for a recipe.
@@ -21,12 +23,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 public class RecipeDetailFragment extends Fragment {
 
+    private FragmentRecipeDetailBinding binding;
     private RecipeDetailViewModel viewModel;
-    private RecipeDetailAdapter adapter;
+    private IngredientsAdapter ingredientsAdapter;
+    private StepsAdapter stepsAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(0, container, false); // TODO: R.layout.fragment_recipe_detail
+        binding = FragmentRecipeDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -42,7 +47,41 @@ public class RecipeDetailFragment extends Fragment {
             }
         }).get(RecipeDetailViewModel.class);
 
-        // TODO: setup RecyclerView with adapter, observe recipeDetail LiveData
-        // TODO: setup "Cook It" button click listener
+        setupRecyclerViews();
+        observeRecipeDetail();
+        setupToolbar();
+    }
+
+    private void setupRecyclerViews() {
+        ingredientsAdapter = new IngredientsAdapter();
+        binding.rvIngredients.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvIngredients.setAdapter(ingredientsAdapter);
+
+        stepsAdapter = new StepsAdapter();
+        binding.rvSteps.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvSteps.setAdapter(stepsAdapter);
+    }
+
+    private void observeRecipeDetail() {
+        viewModel.getRecipeDetail().observe(getViewLifecycleOwner(), detail -> {
+            if (detail != null) {
+                binding.tvRecipeName.setText(detail.recipe.name);
+                ingredientsAdapter.submitList(detail.ingredients);
+                stepsAdapter.submitList(detail.steps);
+            }
+        });
+    }
+
+    private void setupToolbar() {
+        binding.toolbar.setNavigationOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.popBackStack();
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

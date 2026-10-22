@@ -5,7 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
+import com.example.smartpantry.data.dao.RecipeDao;
 import com.example.smartpantry.data.entity.Recipe;
 import com.example.smartpantry.data.entity.RecipeIngredient;
 import com.example.smartpantry.data.entity.RecipeStep;
@@ -26,8 +28,23 @@ public class RecipeDetailViewModel extends AndroidViewModel {
     public RecipeDetailViewModel(@NonNull Application application, long recipeId) {
         super(application);
         repository = new RecipeRepository(application);
-        // TODO: Load recipe detail via repository.getRecipeWithDetails(recipeId)
-        recipeDetail = null;
+        recipeDetail = loadRecipeDetail(recipeId);
+    }
+
+    private LiveData<RecipeDetail> loadRecipeDetail(long recipeId) {
+        MediatorLiveData<RecipeDetail> detail = new MediatorLiveData<>();
+        LiveData<RecipeDao.RecipeWithDetails> source = repository.getRecipeWithDetails(recipeId);
+
+        detail.addSource(source, withDetails -> {
+            if (withDetails != null && withDetails.recipe != null) {
+                RecipeDetail rd = new RecipeDetail();
+                rd.recipe = withDetails.recipe;
+                rd.ingredients = withDetails.ingredients;
+                rd.steps = withDetails.steps;
+                detail.setValue(rd);
+            }
+        });
+        return detail;
     }
 
     public LiveData<RecipeDetail> getRecipeDetail() {
@@ -36,7 +53,13 @@ public class RecipeDetailViewModel extends AndroidViewModel {
 
     /** Deducts recipe ingredients from pantry (bonus "Cook It" feature). */
     public void cookRecipe() {
-        // TODO: Implement
+        // TODO: Implement - deduct ingredients from pantry via PantryRepository
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        repository.shutdown();
     }
 
     /**
