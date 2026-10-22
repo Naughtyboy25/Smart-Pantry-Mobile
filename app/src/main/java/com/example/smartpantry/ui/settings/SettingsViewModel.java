@@ -6,22 +6,30 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.smartpantry.data.repository.PantryRepository;
 import com.example.smartpantry.data.repository.PreferencesRepository;
+import com.example.smartpantry.data.repository.RecipeRepository;
 
 /**
  * ViewModel for Settings screen.
  * Exposes user preferences as LiveData and handles preference changes.
  * Preferences: expiry alerts toggle, default unit system (metric/imperial).
+ * Actions: clear all pantry data, reset recipe database.
  */
 public class SettingsViewModel extends AndroidViewModel {
 
-    private final PreferencesRepository repository;
+    private final PreferencesRepository preferencesRepository;
+    private final PantryRepository pantryRepository;
+    private final RecipeRepository recipeRepository;
+
     private final LiveData<PreferencesRepository.AppPreferences> preferences;
 
     public SettingsViewModel(@NonNull Application application) {
         super(application);
-        repository = new PreferencesRepository(application);
-        preferences = repository.getPreferences();
+        preferencesRepository = new PreferencesRepository(application);
+        pantryRepository = new PantryRepository(application);
+        recipeRepository = new RecipeRepository(application);
+        preferences = preferencesRepository.getPreferences();
     }
 
     public LiveData<PreferencesRepository.AppPreferences> getPreferences() {
@@ -29,20 +37,28 @@ public class SettingsViewModel extends AndroidViewModel {
     }
 
     public void setExpiryAlertsEnabled(boolean enabled) {
-        repository.setExpiryAlertsEnabled(enabled);
+        preferencesRepository.setExpiryAlertsEnabled(enabled);
     }
 
     public void setDefaultUnits(PreferencesRepository.UnitSystem unitSystem) {
-        repository.setDefaultUnits(unitSystem);
+        preferencesRepository.setDefaultUnits(unitSystem);
     }
 
     /** Clears all pantry data (delegates to PantryRepository). */
     public void clearAllPantryData() {
-        // TODO: Use PantryRepository to clear all
+        pantryRepository.clearAll();
     }
 
     /** Resets recipe database to seeded defaults. */
     public void resetRecipesToDefaults() {
-        // TODO: Use RecipeRepository to reset
+        recipeRepository.resetToDefaults(application);
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        preferencesRepository.shutdown();
+        pantryRepository.shutdown();
+        recipeRepository.shutdown();
     }
 }

@@ -1,28 +1,37 @@
 package com.example.smartpantry.data.repository;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
+import androidx.datastore.preferences.core.Preferences;
+import androidx.datastore.preferences.core.PreferencesKeys;
+import androidx.datastore.preferences.rxjava3.RxPreferenceDataStoreBuilder;
+import androidx.datastore.rxjava3.RxDataStore;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 /**
  * Repository for user preferences (Settings screen).
- * Backed by SharedPreferences (or DataStore for modern approach).
+ * Backed by DataStore for modern, async, and transactional persistence.
  * Exposes preferences as LiveData for reactive UI updates.
  */
 public class PreferencesRepository {
 
-    private static final String PREFS_NAME = "smart_pantry_prefs";
-    private static final String KEY_EXPIRY_ALERTS = "expiry_alerts_enabled";
-    private static final String KEY_UNIT_SYSTEM = "unit_system";
+    private static final String DATASTORE_NAME = "smart_pantry_prefs";
 
-    private final SharedPreferences prefs;
+    // DataStore preference keys
+    private static final Preferences.Key<Boolean> KEY_EXPIRY_ALERTS = PreferencesKeys.booleanKey("expiry_alerts_enabled");
+    private static final Preferences.Key<String> KEY_UNIT_SYSTEM = PreferencesKeys.stringKey("unit_system");
+
+    private final RxDataStore<Preferences> dataStore;
     private final MutableLiveData<AppPreferences> preferencesLiveData = new MutableLiveData<>();
 
     public PreferencesRepository(Context context) {
-        prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        // TODO: Load initial preferences
+        dataStore = new RxPreferenceDataStoreBuilder(context, DATASTORE_NAME).build();
+        loadInitialPreferences();
     }
 
     /** Returns current preferences as observable LiveData. */
@@ -32,12 +41,50 @@ public class PreferencesRepository {
 
     /** Enables/disables expiring-soon alerts. */
     public void setExpiryAlertsEnabled(boolean enabled) {
-        // TODO: Save to SharedPreferences and update LiveData
+        dataStore.updateDataAsync(prefs -> prefs.toMutablePreferences().apply {
+            putBoolean(KEY_EXPIRY_ALERTS, enabled)
+        }).subscribeOn(Schedulers.io())
+                .subscribe(
+                        unused -> loadInitialPreferences(),
+                        throwable -> throwable.printStackTrace()
+                );
     }
 
     /** Sets default unit system (METRIC or IMPERIAL). */
     public void setDefaultUnits(UnitSystem unitSystem) {
-        // TODO: Save to SharedPreferences and update LiveData
+        dataStore.updateDataAsync(prefs -> prefs.toMutablePreferences().apply {
+            putString(KEY_UNIT_SYSTEM, unitSystem.name())
+        }).subscribeOn(Schedulers.io())
+                .subscribe(
+                        unused -> loadInitialPreferences(),
+                        throwable -> throwable.printStackTrace()
+                );
+    }
+
+    private void loadInitialPreferences() {
+        Flowable<Preferences> prefsFlow = dataStore.data()
+                .subscribeOn(Schedulers.io())
+                .onErrorResumeNext(throwable -> {
+                    throwable.printStackTrace();
+                    return Flowable.just(Preferences.empty());
+                });
+
+        prefsFlow.firstOrError()
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        prefs -> {
+                            AppPreferences current = new AppPreferences();
+                            current.expiryAlertsEnabled = prefs.get(KEY_EXPIRY_ALERTS) != null ? prefs.get(KEY_EXPIRY_ALERTS) : true;
+                            String unitStr = prefs.get(KEY_UNIT_SYSTEM);
+                            current.defaultUnits = unitStr != null ? UnitSystem.valueOf(unitStr) : UnitSystem.METRIC;
+                            preferencesLiveData.postValue(current);
+                        },
+                        throwable -> {
+                            throwable.printStackTrace();
+                            AppPreferences defaults = new AppPreferences();
+                            preferencesLiveData.postValue(defaults);
+                        }
+                );
     }
 
     /** Data class holding all user preferences. */
@@ -50,5 +97,10 @@ public class PreferencesRepository {
     public enum UnitSystem {
         METRIC,
         IMPERIAL
+    }
+
+    /** No-op shutdown for consistency with other repositories. DataStore doesn't require explicit shutdown. */
+    public void shutdown() {
+        // DataStore handles cleanup automatically
     }
 }
