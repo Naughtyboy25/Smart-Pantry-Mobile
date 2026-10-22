@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.smartpantry.databinding.FragmentSuggestedBinding;
+
 /**
  * Fragment for Suggested Recipes screen (second tab).
  * Displays strictly matchable recipes based on current pantry.
@@ -20,23 +22,49 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 public class SuggestedFragment extends Fragment implements SuggestedAdapter.OnRecipeClickListener {
 
+    private FragmentSuggestedBinding binding;
     private SuggestedViewModel viewModel;
     private SuggestedAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(0, container, false); // TODO: R.layout.fragment_suggested
+        binding = FragmentSuggestedBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(SuggestedViewModel.class);
-        // TODO: setup RecyclerView, observe suggestedRecipes, setup empty state
+        setupRecyclerView();
+        observeSuggestedRecipes();
+    }
+
+    private void setupRecyclerView() {
+        adapter = new SuggestedAdapter(this);
+        binding.rvSuggested.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvSuggested.setAdapter(adapter);
+    }
+
+    private void observeSuggestedRecipes() {
+        viewModel.getSuggestedRecipes().observe(getViewLifecycleOwner(), recipes -> {
+            adapter.submitList(recipes);
+            boolean empty = recipes == null || recipes.isEmpty();
+            binding.tvEmptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
+            binding.rvSuggested.setVisibility(empty ? View.GONE : View.VISIBLE);
+        });
     }
 
     @Override
     public void onRecipeClick(long recipeId) {
-        // TODO: Navigation.findNavController(...).navigate(action, bundle with recipeId)
+        Bundle args = new Bundle();
+        args.putLong("recipeId", recipeId);
+        Navigation.findNavController(requireView()).navigate(R.id.action_suggestedFragment_to_recipeDetailFragment, args);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
