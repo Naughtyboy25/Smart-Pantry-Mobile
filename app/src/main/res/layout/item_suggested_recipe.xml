@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     app:cardElevation="2dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="@color/surface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             android:text="Recipe Name"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/text_primary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvIngredientCount" />
@@ -30,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="5 ingredients"
             android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/text_secondary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -40,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="✓ All ingredients available"
             android:textSize="12sp"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/success"
             app:layout_constraintTop_toBottomOf="@id/tvRecipeName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

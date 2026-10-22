@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.smartpantry.R;
 import com.example.smartpantry.data.entity.PantryItem;
 import com.example.smartpantry.databinding.FragmentPantryBinding;
+import com.example.smartpantry.util.SnackbarUtils;
 
 /**
  * Fragment for Pantry List screen (first tab).
@@ -52,8 +54,9 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
     private void observePantryItems() {
         viewModel.getAllPantryItems().observe(getViewLifecycleOwner(), items -> {
             adapter.submitList(items);
-            binding.tvEmptyState.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
-            binding.rvPantry.setVisibility(items.isEmpty() ? View.GONE : View.VISIBLE);
+            boolean empty = items == null || items.isEmpty();
+            binding.emptyStateContainer.setVisibility(empty ? View.VISIBLE : View.GONE);
+            binding.rvPantry.setVisibility(empty ? View.GONE : View.VISIBLE);
         });
     }
 
@@ -75,9 +78,12 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
     public void onItemDelete(PantryItem item) {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Delete Item")
-                .setMessage("Remove " + item.ingredientName + " from pantry?")
-                .setPositiveButton("Delete", (dialog, which) -> viewModel.deleteItem(item.id))
-                .setNegativeButton("Cancel", null)
+                .setMessage(getString(R.string.confirm_delete_item, item.ingredientName))
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    viewModel.deleteItem(item.id);
+                    SnackbarUtils.showSuccess(requireView(), R.string.snack_item_deleted, SnackbarUtils.DURATION_SHORT);
+                })
+                .setNegativeButton(R.string.cancel, null)
                 .show();
     }
 

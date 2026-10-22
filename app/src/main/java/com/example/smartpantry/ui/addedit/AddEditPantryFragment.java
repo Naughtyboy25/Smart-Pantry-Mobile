@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +17,7 @@ import androidx.navigation.Navigation;
 import com.example.smartpantry.R;
 import com.example.smartpantry.databinding.FragmentAddEditPantryBinding;
 import com.example.smartpantry.util.Constants;
+import com.example.smartpantry.util.SnackbarUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -83,7 +83,7 @@ public class AddEditPantryFragment extends Fragment {
         viewModel.init(mode, itemId);
 
         // Update toolbar title
-        binding.toolbar.setTitle("ADD".equals(mode) ? "Add Ingredient" : "Edit Ingredient");
+        binding.toolbar.setTitle("ADD".equals(mode) ? R.string.add_ingredient : "Edit Ingredient");
     }
 
     private void observeViewModel() {
@@ -112,7 +112,7 @@ public class AddEditPantryFragment extends Fragment {
 
         viewModel.getSaveSuccess().observe(getViewLifecycleOwner(), success -> {
             if (Boolean.TRUE.equals(success)) {
-                Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show();
+                SnackbarUtils.showSuccess(requireView(), R.string.snack_item_saved, SnackbarUtils.DURATION_SHORT);
                 NavController navController = Navigation.findNavController(requireView());
                 navController.popBackStack();
             }
@@ -120,7 +120,7 @@ public class AddEditPantryFragment extends Fragment {
 
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
+                SnackbarUtils.showError(requireView(), error, SnackbarUtils.DURATION_LONG);
             }
         });
     }

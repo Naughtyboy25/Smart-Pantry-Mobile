@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">Smart Pantry Manager</string>
+
+    <!-- Pantry Empty State -->
+    <string name="empty_pantry_title">Your Pantry is Empty</string>
+    <string name="empty_pantry_subtitle">Tap the + button to add your first ingredient</string>
+    <string name="empty_pantry_icon_desc">Empty pantry illustration</string>
+    <string name="add_ingredient">Add ingredient</string>
+
+    <!-- Suggested Empty State -->
+    <string name="empty_suggested_title">No Recipes Match</string>
+    <string name="empty_suggested_subtitle">Add more ingredients to your pantry to see matching recipes</string>
+    <string name="empty_suggested_icon_desc">No matching recipes illustration</string>
+
+    <!-- Settings -->
+    <string name="preferences_section">Preferences</string>
+    <string name="expiry_alerts">Expiring-soon alerts</string>
+    <string name="unit_system">Default Unit System</string>
+    <string name="metric">Metric</string>
+    <string name="imperial">Imperial</string>
+    <string name="danger_zone">Danger Zone</string>
+    <string name="clear_pantry">Clear All Pantry Data</string>
+    <string name="reset_recipes">Reset Recipe Database</string>
+
+    <!-- Common Actions -->
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+
+    <!-- Dialogs -->
+    <string name="confirm_delete_item">Remove %s from pantry?</string>
+    <string name="confirm_clear_pantry">This will permanently delete all your pantry items. This action cannot be undone.</string>
+    <string name="confirm_reset_recipes">This will reset all recipes to the default 20 South African recipes. Any custom recipes will be lost.</string>
+
+    <!-- Snackbar Messages -->
+    <string name="snack_item_deleted">Item deleted</string>
+    <string name="snack_item_saved">Item saved</string>
+    <string name="snack_pantry_cleared">Pantry data cleared</string>
+    <string name="snack_recipes_reset">Recipe database reset to defaults</string>
+    <string name="snack_undone">Undone</string>
+
+    <!-- Undo Action -->
+    <string name="undo">Undo</string>
+
+    <!-- Content Descriptions -->
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+
+    <!-- Version -->
+    <string name="app_version_format">Version %s (%d)</string>
 </resources>

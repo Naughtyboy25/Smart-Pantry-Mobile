@@ -50,7 +50,7 @@ public class SuggestedFragment extends Fragment implements SuggestedAdapter.OnRe
         viewModel.getSuggestedRecipes().observe(getViewLifecycleOwner(), recipes -> {
             adapter.submitList(recipes);
             boolean empty = recipes == null || recipes.isEmpty();
-            binding.tvEmptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
+            binding.emptyStateContainer.setVisibility(empty ? View.VISIBLE : View.GONE);
             binding.rvSuggested.setVisibility(empty ? View.GONE : View.VISIBLE);
         });
     }

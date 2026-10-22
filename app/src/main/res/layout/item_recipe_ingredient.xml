@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="12dp 8dp">
 
     <TextView
         android:id="@+id/tvIngredientName"
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Ingredient"
         android:textSize="16sp"
+        android:textColor="@color/text_primary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvQuantityUnit" />
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="200 g"
         android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/text_secondary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.smartpantry.BuildConfig;
+import com.example.smartpantry.R;
 import com.example.smartpantry.databinding.FragmentSettingsBinding;
+import com.example.smartpantry.util.SnackbarUtils;
 
 /**
  * Fragment for Settings screen (third tab).
@@ -64,26 +66,26 @@ public class SettingsFragment extends Fragment {
 
     private void setupClickListeners() {
         binding.btnClearPantry.setOnClickListener(v -> {
-            new androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                    .setTitle("Clear All Pantry Data")
-                    .setMessage("This will permanently delete all your pantry items. This action cannot be undone.")
-                    .setPositiveButton("Clear", (dialog, which) -> {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.clear_pantry)
+                    .setMessage(R.string.confirm_clear_pantry)
+                    .setPositiveButton(R.string.delete, (dialog, which) -> {
                         viewModel.clearAllPantryData();
-                        Toast.makeText(requireContext(), "Pantry data cleared", Toast.LENGTH_SHORT).show();
+                        SnackbarUtils.showSuccess(requireView(), R.string.snack_pantry_cleared, SnackbarUtils.DURATION_SHORT);
                     })
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton(R.string.cancel, null)
                     .show();
         });
 
         binding.btnResetRecipes.setOnClickListener(v -> {
-            new androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                    .setTitle("Reset Recipe Database")
-                    .setMessage("This will reset all recipes to the default 20 South African recipes. Any custom recipes will be lost.")
-                    .setPositiveButton("Reset", (dialog, which) -> {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.reset_recipes)
+                    .setMessage(R.string.confirm_reset_recipes)
+                    .setPositiveButton(R.string.delete, (dialog, which) -> {
                         viewModel.resetRecipesToDefaults();
-                        Toast.makeText(requireContext(), "Recipe database reset to defaults", Toast.LENGTH_SHORT).show();
+                        SnackbarUtils.showSuccess(requireView(), R.string.snack_recipes_reset, SnackbarUtils.DURATION_SHORT);
                     })
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton(R.string.cancel, null)
                     .show();
         });
     }
@@ -91,7 +93,7 @@ public class SettingsFragment extends Fragment {
     private void displayVersion() {
         String versionName = BuildConfig.VERSION_NAME;
         int versionCode = BuildConfig.VERSION_CODE;
-        binding.tvVersion.setText(String.format("Version %s (%d)", versionName, versionCode));
+        binding.tvVersion.setText(getString(R.string.app_version_format, versionName, versionCode));
     }
 
     @Override
