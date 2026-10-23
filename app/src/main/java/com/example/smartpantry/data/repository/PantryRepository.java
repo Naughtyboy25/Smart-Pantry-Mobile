@@ -16,6 +16,7 @@ import java.util.concurrent.Executors;
  * Repository for pantry items.
  * Mediates between ViewModels and PantryItemDao.
  * Runs write operations on background thread via ExecutorService.
+ * Seeds initial pantry data on first run.
  */
 public class PantryRepository {
 
@@ -24,6 +25,7 @@ public class PantryRepository {
 
     public PantryRepository(Application application) {
         dao = AppDatabase.getInstance(application).pantryItemDao();
+        seedIfEmpty(application);
     }
 
     /** Returns all pantry items as observable LiveData. */
@@ -59,6 +61,15 @@ public class PantryRepository {
     /** Clears all pantry data (used in Settings reset). */
     public void clearAll() {
         executor.execute(() -> dao.clearAll());
+    }
+
+    /** Seeds initial pantry data if empty. */
+    public void seedIfEmpty(Application application) {
+        executor.execute(() -> {
+            if (dao.countItems() == 0) {
+                PantrySeeder.seedIfEmpty(application, dao);
+            }
+        });
     }
 
     /** Shuts down the background executor. Call in Application onTerminate if needed. */

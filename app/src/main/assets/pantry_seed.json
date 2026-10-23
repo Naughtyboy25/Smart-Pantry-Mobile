@@ -1,0 +1,22 @@
+[
+  { "ingredientName": "onion", "quantity": 3, "unit": "pcs", "expiryDays": 30 },
+  { "ingredientName": "garlic", "quantity": 1, "unit": "pcs", "expiryDays": 60 },
+  { "ingredientName": "tomato", "quantity": 4, "unit": "pcs", "expiryDays": 7 },
+  { "ingredientName": "cooking oil", "quantity": 500, "unit": "ml", "expiryDays": 365 },
+  { "ingredientName": "salt", "quantity": 500, "unit": "g", "expiryDays": 730 },
+  { "ingredientName": "black pepper", "quantity": 50, "unit": "g", "expiryDays": 730 },
+  { "ingredientName": "rice", "quantity": 1, "unit": "kg", "expiryDays": 365 },
+  { "ingredientName": "flour", "quantity": 1, "unit": "kg", "expiryDays": 180 },
+  { "ingredientName": "sugar", "quantity": 500, "unit": "g", "expiryDays": 365 },
+  { "ingredientName": "eggs", "quantity": 12, "unit": "pcs", "expiryDays": 21 },
+  { "ingredientName": "milk", "quantity": 1, "unit": "l", "expiryDays": 7 },
+  { "ingredientName": "butter", "quantity": 250, "unit": "g", "expiryDays": 30 },
+  { "ingredientName": "chicken breast", "quantity": 500, "unit": "g", "expiryDays": 2 },
+  { "ingredientName": "beef mince", "quantity": 500, "unit": "g", "expiryDays": 2 },
+  { "ingredientName": "potato", "quantity": 2, "unit": "kg", "expiryDays": 30 },
+  { "ingredientName": "carrot", "quantity": 5, "unit": "pcs", "expiryDays": 21 },
+  { "ingredientName": "bell pepper", "quantity": 3, "unit": "pcs", "expiryDays": 14 },
+  { "ingredientName": "cheese", "quantity": 200, "unit": "g", "expiryDays": 14 },
+  { "ingredientName": "bread", "quantity": 1, "unit": "pcs", "expiryDays": 5 },
+  { "ingredientName": "pasta", "quantity": 500, "unit": "g", "expiryDays": 365 }
+]

@@ -45,4 +45,7 @@ public interface PantryItemDao {
 
     @Query("DELETE FROM pantry_items")
     int clearAll();
+
+    @Query("SELECT COUNT(*) FROM pantry_items")
+    int countItems();
 }
