@@ -15,12 +15,15 @@ import com.example.smartpantry.util.IngredientMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * ViewModel for Suggested Recipes screen.
  * Reactively combines pantry items + all recipes through IngredientMatcher
  * to produce a live list of strictly matchable recipes.
  * Uses MediatorLiveData to recompute when either pantry or recipes change.
+ * Matching runs on a background thread to avoid blocking the main thread.
  */
 public class SuggestedViewModel extends AndroidViewModel {
 
@@ -28,6 +31,7 @@ public class SuggestedViewModel extends AndroidViewModel {
     private final RecipeRepository recipeRepository;
     private final MediatorLiveData<List<RecipeWithMatch>> suggestedRecipes = new MediatorLiveData<>();
     private final MediatorLiveData<List<RecipeWithMatch>> almostThereRecipes = new MediatorLiveData<>();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public SuggestedViewModel(@NonNull Application application) {
         super(application);
@@ -49,7 +53,7 @@ public class SuggestedViewModel extends AndroidViewModel {
         suggestedRecipes.addSource(pantryLive, pantryItems -> {
             List<Recipe> recipes = recipesLive.getValue();
             if (recipes != null) {
-                computeMatches(pantryItems, recipes);
+                computeMatchesAsync(pantryItems, recipes);
             }
         });
 
@@ -57,7 +61,7 @@ public class SuggestedViewModel extends AndroidViewModel {
         suggestedRecipes.addSource(recipesLive, recipes -> {
             List<PantryItem> pantry = pantryLive.getValue();
             if (pantry != null) {
-                computeMatches(pantry, recipes);
+                computeMatchesAsync(pantry, recipes);
             }
         });
 
@@ -65,52 +69,59 @@ public class SuggestedViewModel extends AndroidViewModel {
         almostThereRecipes.addSource(pantryLive, pantryItems -> {
             List<Recipe> recipes = recipesLive.getValue();
             if (recipes != null) {
-                computeAlmostThere(pantryItems, recipes);
+                computeAlmostThereAsync(pantryItems, recipes);
             }
         });
 
         almostThereRecipes.addSource(recipesLive, recipes -> {
             List<PantryItem> pantry = pantryLive.getValue();
             if (pantry != null) {
-                computeAlmostThere(pantry, recipes);
+                computeAlmostThereAsync(pantry, recipes);
             }
         });
     }
 
-    private void computeMatches(List<PantryItem> pantryItems, List<Recipe> recipes) {
-        List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
+    private void computeMatchesAsync(List<PantryItem> pantryItems, List<Recipe> recipes) {
+        executor.execute(() -> {
+            List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
 
-        List<RecipeWithMatch> strictMatches = new ArrayList<>();
-        for (IngredientMatcher.MatchResult mr : results) {
-            if (mr.isStrictMatch) {
-                // Find recipe name
-                for (Recipe r : recipes) {
-                    if (r.id == mr.recipeId) {
-                        strictMatches.add(new RecipeWithMatch(r.id, r.name, mr.missingCount + (r.ingredients != null ? r.ingredients.size() : 0), r.ingredients != null ? r.ingredients.size() : 0, true));
-                        break;
+            List<RecipeWithMatch> strictMatches = new ArrayList<>();
+            for (IngredientMatcher.MatchResult mr : results) {
+                if (mr.isStrictMatch) {
+                    // Find recipe name and get ingredient count
+                    for (Recipe r : recipes) {
+                        if (r.id == mr.recipeId) {
+                            int totalIng = recipeRepository.getIngredientsForRecipe(r.id).size();
+                            strictMatches.add(new RecipeWithMatch(r.id, r.name, totalIng, totalIng, true));
+                            break;
+                        }
                     }
                 }
             }
-        }
-        suggestedRecipes.setValue(strictMatches);
+            // Post result back to main thread
+            suggestedRecipes.postValue(strictMatches);
+        });
     }
 
-    private void computeAlmostThere(List<PantryItem> pantryItems, List<Recipe> recipes) {
-        List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
+    private void computeAlmostThereAsync(List<PantryItem> pantryItems, List<Recipe> recipes) {
+        executor.execute(() -> {
+            List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
 
-        List<RecipeWithMatch> almostMatches = new ArrayList<>();
-        for (IngredientMatcher.MatchResult mr : results) {
-            if (!mr.isStrictMatch && mr.missingCount == 1) {
-                for (Recipe r : recipes) {
-                    if (r.id == mr.recipeId) {
-                        int totalIng = r.ingredients != null ? r.ingredients.size() : 0;
-                        almostMatches.add(new RecipeWithMatch(r.id, r.name, totalIng, totalIng - 1, false));
-                        break;
+            List<RecipeWithMatch> almostMatches = new ArrayList<>();
+            for (IngredientMatcher.MatchResult mr : results) {
+                if (!mr.isStrictMatch && mr.missingCount == 1) {
+                    for (Recipe r : recipes) {
+                        if (r.id == mr.recipeId) {
+                            int totalIng = recipeRepository.getIngredientsForRecipe(r.id).size();
+                            almostMatches.add(new RecipeWithMatch(r.id, r.name, totalIng, totalIng - 1, false));
+                            break;
+                        }
                     }
                 }
             }
-        }
-        almostThereRecipes.setValue(almostMatches);
+            // Post result back to main thread
+            almostThereRecipes.postValue(almostMatches);
+        });
     }
 
     /** Returns strictly matchable recipes as observable LiveData. */
@@ -128,6 +139,7 @@ public class SuggestedViewModel extends AndroidViewModel {
         super.onCleared();
         pantryRepository.shutdown();
         recipeRepository.shutdown();
+        executor.shutdown();
     }
 
     /**

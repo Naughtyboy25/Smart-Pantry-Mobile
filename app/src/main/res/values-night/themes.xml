@@ -16,10 +16,10 @@
         <item name="colorOnError">@color/on_error</item>
         <item name="colorErrorContainer">@color/error_container</item>
 
-        <!-- Surface & Background -->
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorSurfaceVariant">@color/surface_variant</item>
-        <item name="colorOnSurface">@color/white</item>
+        <!-- Surface & Background (Dark mode colors) -->
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorSurfaceVariant">#2C2C2C</item>
+        <item name="colorOnSurface">#FFFFFF</item>
         <item name="colorOnSurfaceVariant">#B0BEC5</item>
 
         <!-- Outline -->
@@ -28,7 +28,7 @@
 
         <!-- Status bar -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:navigationBarColor">#1E1E1E</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

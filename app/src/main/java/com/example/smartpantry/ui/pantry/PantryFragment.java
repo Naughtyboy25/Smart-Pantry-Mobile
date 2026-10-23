@@ -62,7 +62,10 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
 
     private void setupFab() {
         binding.fabAdd.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_pantryFragment_to_addEditPantryFragment);
+            Bundle args = new Bundle();
+            args.putString("mode", "ADD");
+            args.putLong("itemId", -1L);
+            Navigation.findNavController(v).navigate(R.id.action_pantryFragment_to_addEditPantryFragment, args);
         });
     }
 

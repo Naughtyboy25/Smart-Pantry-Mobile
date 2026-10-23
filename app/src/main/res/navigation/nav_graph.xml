@@ -43,6 +43,7 @@
         tools:layout="@layout/fragment_settings" />
 
     <!-- Add/Edit Pantry Item (Modal from Pantry) -->
+    <!-- CRITICAL FIX: primitive long cannot be nullable. Always provide defaultValue. -->
     <fragment
         android:id="@+id/addEditPantryFragment"
         android:name="com.example.smartpantry.ui.addedit.AddEditPantryFragment"
@@ -51,11 +52,11 @@
         <argument
             android:name="mode"
             app:argType="string"
-            app:nullable="false" />
+            android:defaultValue="ADD" />
         <argument
             android:name="itemId"
             app:argType="long"
-            app:nullable="true" />
+            android:defaultValue="-1L" />
     </fragment>
 
     <!-- Recipe Detail (from Suggested) -->
@@ -67,7 +68,8 @@
         <argument
             android:name="recipeId"
             app:argType="long"
-            app:nullable="false" />
+            app:nullable="false"
+            android:defaultValue="-1L" />
     </fragment>
 
 </navigation>
