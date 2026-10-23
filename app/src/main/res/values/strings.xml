@@ -3,14 +3,25 @@
 
     <!-- Pantry Empty State -->
     <string name="empty_pantry_title">Your Pantry is Empty</string>
-    <string name="empty_pantry_subtitle">Tap the + button to add your first ingredient</string>
-    <string name="empty_pantry_icon_desc">Empty pantry illustration</string>
+    <string name="empty_pantry_subtitle">Start by adding ingredients you have on hand. We will find recipes you can make right away!</string>
+    <string name="empty_pantry_icon_desc">Empty pantry illustration with shelves</string>
+    <string name="empty_pantry_cta">Add Your First Ingredient</string>
     <string name="add_ingredient">Add ingredient</string>
+
+    <!-- Add/Edit Form Labels & Hints -->
+    <string name="add_edit_section_ingredients">Ingredient Details</string>
+    <string name="ingredient_name_hint">Ingredient Name</string>
+    <string name="ingredient_name_helper">e.g., Tomato, Onion, Chicken Breast</string>
+    <string name="quantity_hint">Quantity</string>
+    <string name="unit_hint">Unit</string>
+    <string name="expiry_date_hint">Expiry Date (optional)</string>
+    <string name="expiry_date_helper">Tap to select a date</string>
 
     <!-- Suggested Empty State -->
     <string name="empty_suggested_title">No Recipes Match</string>
-    <string name="empty_suggested_subtitle">Add more ingredients to your pantry to see matching recipes</string>
-    <string name="empty_suggested_icon_desc">No matching recipes illustration</string>
+    <string name="empty_suggested_subtitle">Add ingredients to your pantry first. We will show you recipes you can make with what you have!</string>
+    <string name="empty_suggested_icon_desc">Recipe book searching for matches</string>
+    <string name="empty_suggested_cta">Go to Pantry</string>
 
     <!-- Settings -->
     <string name="preferences_section">Preferences</string>
@@ -46,7 +57,11 @@
     <!-- Content Descriptions -->
     <string name="nav_drawer_open">Open navigation drawer</string>
     <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="recipe_icon_desc">Recipe book icon</string>
+    <string name="navigate_next">View recipe details</string>
+    <string name="ingredient_icon_desc">Ingredient category icon</string>
+    <string name="edit_item">Edit this item</string>
 
     <!-- Version -->
-    <string name="app_version_format">Version %s (%d)</string>
+    <string name="app_version_format" formatted="false">Version %s (%d)</string>
 </resources>

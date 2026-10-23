@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.smartpantry.BuildConfig;
 import com.example.smartpantry.R;
+import com.example.smartpantry.data.repository.PreferencesRepository;
 import com.example.smartpantry.databinding.FragmentSettingsBinding;
 import com.example.smartpantry.util.SnackbarUtils;
 

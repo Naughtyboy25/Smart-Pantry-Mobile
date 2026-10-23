@@ -51,7 +51,7 @@ public class SettingsViewModel extends AndroidViewModel {
 
     /** Resets recipe database to seeded defaults. */
     public void resetRecipesToDefaults() {
-        recipeRepository.resetToDefaults(application);
+        recipeRepository.resetToDefaults(getApplication());
     }
 
     @Override

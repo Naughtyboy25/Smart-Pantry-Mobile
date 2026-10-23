@@ -67,7 +67,7 @@ public class RecipeRepository {
     public void seedIfEmpty(Application application) {
         executor.execute(() -> {
             if (recipeDao.countRecipes() == 0) {
-                RecipeSeeder.seedFromAssets(application, recipeDao, ingredientDao, stepDao);
+                RecipeSeeder.seedFromAssets(application, recipeDao);
             }
         });
     }
@@ -78,7 +78,7 @@ public class RecipeRepository {
             recipeDao.clearAllSteps();
             recipeDao.clearAllIngredients();
             recipeDao.clearAllRecipes();
-            RecipeSeeder.seedFromAssets(application, recipeDao, ingredientDao, stepDao);
+            RecipeSeeder.seedFromAssets(application, recipeDao);
         });
     }
 

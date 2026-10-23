@@ -69,7 +69,6 @@ public final class Constants {
      * - singularize common plurals
      */
     public static String normalizeName(String name) {
-        // TODO: Delegate to IngredientMatcher.normalizeName(name)
-        return name != null ? name.trim().toLowerCase() : "";
+        return IngredientMatcher.normalizeName(name);
     }
 }

@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.example.smartpantry.data.dao.RecipeDao;
-import com.example.smartpantry.data.dao.RecipeIngredientDao;
-import com.example.smartpantry.data.dao.RecipeStepDao;
 import com.example.smartpantry.data.entity.Recipe;
 import com.example.smartpantry.data.entity.RecipeIngredient;
 import com.example.smartpantry.data.entity.RecipeStep;
@@ -26,16 +24,14 @@ import java.util.Scanner;
 public class RecipeSeeder {
 
     public static void seedFromAssets(Application application,
-                                      RecipeDao recipeDao,
-                                      RecipeIngredientDao ingredientDao,
-                                      RecipeStepDao stepDao) {
+                                      RecipeDao recipeDao) {
         try {
             String json = loadJSONFromAsset(application, Constants.RECIPES_ASSET_FILE);
             JSONArray recipesArray = new JSONArray(json);
 
             for (int i = 0; i < recipesArray.length(); i++) {
                 JSONObject recipeJson = recipesArray.getJSONObject(i);
-                seedRecipe(recipeJson, recipeDao, ingredientDao, stepDao);
+                seedRecipe(recipeJson, recipeDao);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,15 +39,13 @@ public class RecipeSeeder {
     }
 
     private static void seedRecipe(JSONObject recipeJson,
-                                   RecipeDao recipeDao,
-                                   RecipeIngredientDao ingredientDao,
-                                   RecipeStepDao stepDao) throws Exception {
+                                   RecipeDao recipeDao) throws Exception {
         // Insert recipe
         Recipe recipe = new Recipe();
         recipe.name = recipeJson.getString("name");
         recipe.description = recipeJson.optString("description", "");
         recipe.servings = recipeJson.optInt("servings", 1);
-        recipe.prepTimeMinutes = recipeJson.optLong("prepTimeMinutes", 0);
+        recipe.prepTimeMinutes = (int) recipeJson.optLong("prepTimeMinutes", 0);
 
         long recipeId = recipeDao.insert(recipe);
 
@@ -67,7 +61,7 @@ public class RecipeSeeder {
             ing.unit = ingJson.getString("unit");
             ingredients.add(ing);
         }
-        ingredientDao.insertIngredients(ingredients);
+        recipeDao.insertIngredients(ingredients);
 
         // Insert steps
         JSONArray stepsArray = recipeJson.getJSONArray("steps");
@@ -79,7 +73,7 @@ public class RecipeSeeder {
             step.instruction = stepsArray.getString(k);
             steps.add(step);
         }
-        stepDao.insertSteps(steps);
+        recipeDao.insertSteps(steps);
     }
 
     private static String loadJSONFromAsset(Context context, String fileName) {

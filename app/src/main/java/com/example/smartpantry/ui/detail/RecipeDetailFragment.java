@@ -39,6 +39,13 @@ public class RecipeDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         long recipeId = getArguments() != null ? getArguments().getLong("recipeId", -1) : -1;
+
+        // Guard: invalid recipeId (e.g., from nav graph inflation), go back
+        if (recipeId == -1) {
+            Navigation.findNavController(view).popBackStack();
+            return;
+        }
+
         viewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
             @Override

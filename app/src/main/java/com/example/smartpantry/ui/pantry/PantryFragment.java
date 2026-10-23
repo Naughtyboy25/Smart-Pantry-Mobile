@@ -43,6 +43,7 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
         setupRecyclerView();
         observePantryItems();
         setupFab();
+        setupEmptyStateCta();
     }
 
     private void setupRecyclerView() {
@@ -62,6 +63,15 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
 
     private void setupFab() {
         binding.fabAdd.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString("mode", "ADD");
+            args.putLong("itemId", -1L);
+            Navigation.findNavController(v).navigate(R.id.action_pantryFragment_to_addEditPantryFragment, args);
+        });
+    }
+
+    private void setupEmptyStateCta() {
+        binding.btnEmptyAddFirst.setOnClickListener(v -> {
             Bundle args = new Bundle();
             args.putString("mode", "ADD");
             args.putLong("itemId", -1L);

@@ -35,8 +35,8 @@ public class PantryRepositoryTest {
                 .allowMainThreadQueries()
                 .build();
         repository = new PantryRepository(ApplicationProvider.getApplicationContext());
-        // Replace the internal database with our test one
-        // Note: In a real test, we'd use dependency injection. For now, we test via DAO directly.
+        // Replace the internal database with test one
+
     }
 
     @After

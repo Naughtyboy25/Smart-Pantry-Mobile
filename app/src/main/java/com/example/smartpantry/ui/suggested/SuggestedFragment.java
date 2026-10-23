@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.smartpantry.R;
 import com.example.smartpantry.databinding.FragmentSuggestedBinding;
 
 /**
@@ -38,6 +39,7 @@ public class SuggestedFragment extends Fragment implements SuggestedAdapter.OnRe
         viewModel = new ViewModelProvider(this).get(SuggestedViewModel.class);
         setupRecyclerView();
         observeSuggestedRecipes();
+        setupEmptyStateCta();
     }
 
     private void setupRecyclerView() {
@@ -52,6 +54,19 @@ public class SuggestedFragment extends Fragment implements SuggestedAdapter.OnRe
             boolean empty = recipes == null || recipes.isEmpty();
             binding.emptyStateContainer.setVisibility(empty ? View.VISIBLE : View.GONE);
             binding.rvSuggested.setVisibility(empty ? View.GONE : View.VISIBLE);
+        });
+    }
+
+    private void setupEmptyStateCta() {
+        binding.btnEmptyGoToPantry.setOnClickListener(v -> {
+            // Switch to pantry tab via bottom navigation
+            if (getActivity() != null) {
+                com.google.android.material.bottomnavigation.BottomNavigationView bottomNav =
+                        getActivity().findViewById(R.id.bottomNavView);
+                if (bottomNav != null) {
+                    bottomNav.setSelectedItemId(R.id.pantryFragment);
+                }
+            }
         });
     }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Recipe book with search magnifier -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,4H20V20H4V4ZM4,4L12,1L20,4V20H4V4Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M15.5,14H17V17H15.5V14ZM13,14H14.5V17H13V14ZM10.5,14H12V17H10.5V14ZM8,14H9.5V17H8V14Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M18,10H6V8H18V10Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M18,13H6V11H18V13Z" />
+    <!-- Magnifying glass for "searching" -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M15.5,6C15.5,5.17 14.83,4.5 14,4.5C13.17,4.5 12.5,5.17 12.5,6C12.5,6.83 13.17,7.5 14,7.5C14.83,7.5 15.5,6.83 15.5,6ZM14,4C13.45,4 13,4.45 13,5C13,5.55 13.45,6 14,6C14.55,6 15,5.55 15,5C15,4.45 14.55,4 14,4Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M17.5,8.5L19.5,10.5" />
+</vector>

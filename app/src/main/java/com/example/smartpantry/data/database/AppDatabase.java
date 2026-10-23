@@ -2,7 +2,6 @@ package com.example.smartpantry.data.database;
 
 import android.content.Context;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -19,15 +18,12 @@ import com.example.smartpantry.data.entity.RecipeStep;
 /**
  * Room database class for Smart Pantry Manager.
  * Entities: PantryItem, Recipe, RecipeIngredient, RecipeStep.
- * Uses Room's auto-migration for schema upgrades.
+ * Includes migration support for future schema changes.
  */
 @Database(
     entities = {PantryItem.class, Recipe.class, RecipeIngredient.class, RecipeStep.class},
     version = 1,
-    exportSchema = false,
-    autoMigrations = {
-        @AutoMigration(from = 1, to = 2)
-    }
+    exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -41,7 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
     /**
      * Returns the singleton database instance.
      * Creates database on first call using Room.databaseBuilder.
-     * Auto-migrations are handled by Room based on @Database annotation.
+     * Migrations can be added via .addMigrations(...) when schema version increases.
      */
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {

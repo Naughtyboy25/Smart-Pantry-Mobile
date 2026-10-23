@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Pantry shelf with jars illustration -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,6H20V8H4V6Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,12H20V14H4V12Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,18H20V20H4V18Z" />
+    <!-- Jars on shelves -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M7,4.5C7,3.67 7.67,3 8.5,3H15.5C16.33,3 17,3.67 17,4.5V7H7V4.5Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M13,10.5C13,9.67 13.67,9 14.5,9H17.5C18.33,9 19,9.67 19,10.5V12H13V10.5Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M6,16.5C6,15.67 6.67,15 7.5,15H10.5C11.33,15 12,15.67 12,16.5V18H6V16.5Z" />
+</vector>

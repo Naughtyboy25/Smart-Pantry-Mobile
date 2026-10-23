@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (Material Design 2 - compatible). -->
     <style name="Theme.SmartPantry" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color -->
         <item name="colorPrimary">@color/primary</item>
@@ -22,28 +22,44 @@
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
 
+        <!-- Background -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/on_background</item>
+
         <!-- Outline -->
         <item name="colorOutline">@color/outline</item>
         <item name="colorOutlineVariant">@color/outline_variant</item>
 
-        <!-- Status bar -->
+        <!-- Status bar / Navigation -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">@color/surface</item>
         <item name="android:windowLightNavigationBar">true</item>
 
-        <!-- Typography -->
+        <!-- Elevation overlay -->
+        <item name="elevationOverlayEnabled">false</item>
+
+        <!-- Typography (MD2 compatible) -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.SmartPantry.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.SmartPantry.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.SmartPantry.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.SmartPantry.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.SmartPantry.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.SmartPantry.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.SmartPantry.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.SmartPantry.Subtitle2</item>
         <item name="textAppearanceBody1">@style/TextAppearance.SmartPantry.Body1</item>
         <item name="textAppearanceBody2">@style/TextAppearance.SmartPantry.Body2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.SmartPantry.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.SmartPantry.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.SmartPantry.Overline</item>
 
         <!-- Shape -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SmartPantry.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.SmartPantry.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SmartPantry.LargeComponent</item>
 
-        <!-- Customize your theme here. -->
+        <!-- TextInputLayout default style -->
+        <item name="textInputStyle">@style/Widget.SmartPantry.TextInputLayout</item>
     </style>
 
     <style name="Theme.SmartPantry.NoActionBar">
@@ -51,12 +67,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- Typography Styles -->
+    <!-- Material Design 2 Typography Styles -->
     <style name="TextAppearance.SmartPantry.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">sans-serif-medium</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:letterSpacing">-0.015625</item>
+        <item name="android:fontWeight">600</item>
     </style>
 
     <style name="TextAppearance.SmartPantry.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
@@ -64,6 +81,55 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:letterSpacing">0</item>
+        <item name="android:fontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.0015625</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.009375</item>
+        <item name="android:fontWeight">500</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.009375</item>
+        <item name="android:fontWeight">400</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:letterSpacing">0.017857</item>
+        <item name="android:fontWeight">500</item>
     </style>
 
     <style name="TextAppearance.SmartPantry.Body1" parent="TextAppearance.MaterialComponents.Body1">
@@ -71,6 +137,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:letterSpacing">0.009375</item>
+        <item name="android:fontWeight">400</item>
     </style>
 
     <style name="TextAppearance.SmartPantry.Body2" parent="TextAppearance.MaterialComponents.Body2">
@@ -78,6 +145,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/on_surface_variant</item>
         <item name="android:letterSpacing">0.017857</item>
+        <item name="android:fontWeight">400</item>
     </style>
 
     <style name="TextAppearance.SmartPantry.Caption" parent="TextAppearance.MaterialComponents.Caption">
@@ -85,6 +153,25 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/text_disabled</item>
         <item name="android:letterSpacing">0.033333</item>
+        <item name="android:fontWeight">400</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.007142857</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TextAppearance.SmartPantry.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:fontWeight">500</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <!-- Shape Appearances -->
@@ -101,5 +188,19 @@
     <style name="ShapeAppearance.SmartPantry.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- Custom TextInputLayout Style -->
+    <style name="Widget.SmartPantry.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="hintTextColor">@color/text_hint</item>
+        <item name="placeholderTextColor">@color/text_disabled</item>
+        <item name="android:textColorHint">@color/text_hint</item>
     </style>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Recipe book icon -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,4H20V20H4V4ZM4,4L12,1L20,4V20H4V4Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M15.5,14H17V17H15.5V14ZM13,14H14.5V17H13V14ZM10.5,14H12V17H10.5V14ZM8,14H9.5V17H8V14Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M18,10H6V8H18V10Z" />
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M18,13H6V11H18V13Z" />
+</vector>

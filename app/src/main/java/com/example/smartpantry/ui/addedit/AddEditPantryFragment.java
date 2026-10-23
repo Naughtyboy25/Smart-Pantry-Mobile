@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,12 +27,14 @@ import java.util.Locale;
  * Fragment for Add/Edit Pantry Item screen.
  * Handles both ADD and EDIT modes via navigation arguments.
  * Validates input, shows date picker for expiry, saves via ViewModel.
+ * Uses Material Design exposed dropdown menu (AutoCompleteTextView) for unit selection.
  */
 public class AddEditPantryFragment extends Fragment {
 
     private FragmentAddEditPantryBinding binding;
     private AddEditPantryViewModel viewModel;
     private Long selectedExpiryDate = null;
+    private ArrayAdapter<String> unitAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,17 +46,36 @@ public class AddEditPantryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(AddEditPantryViewModel.class);
-        setupUnitSpinner();
+        setupUnitDropdown();
         setupExpiryPicker();
         observeViewModel();
         loadArguments();
         setupButtons();
     }
 
-    private void setupUnitSpinner() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_spinner_dropdown_item, Constants.UNIT_LABELS);
-        binding.spinnerUnit.setAdapter(adapter);
+    private void setupUnitDropdown() {
+        // Create adapter for the exposed dropdown menu (AutoCompleteTextView)
+        unitAdapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_dropdown_item_1line, Constants.UNIT_LABELS);
+
+        AutoCompleteTextView autoCompleteUnit = binding.etUnit;
+        autoCompleteUnit.setAdapter(unitAdapter);
+        autoCompleteUnit.setThreshold(0); // Show dropdown immediately on click
+
+        // Show dropdown on click
+        autoCompleteUnit.setOnClickListener(v -> {
+            if (unitAdapter != null) {
+                autoCompleteUnit.showDropDown();
+            }
+        });
+
+        // Prevent keyboard from showing, show dropdown instead
+        autoCompleteUnit.setFocusable(false);
+        autoCompleteUnit.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                autoCompleteUnit.showDropDown();
+            }
+        });
     }
 
     private void setupExpiryPicker() {
@@ -83,7 +105,11 @@ public class AddEditPantryFragment extends Fragment {
         viewModel.init(mode, itemId);
 
         // Update toolbar title
-        binding.toolbar.setTitle("ADD".equals(mode) ? R.string.add_ingredient : "Edit Ingredient");
+        if ("ADD".equals(mode)) {
+            binding.toolbar.setTitle(R.string.add_ingredient);
+        } else {
+            binding.toolbar.setTitle("Edit Ingredient");
+        }
     }
 
     private void observeViewModel() {
@@ -92,10 +118,10 @@ public class AddEditPantryFragment extends Fragment {
                 binding.etIngredientName.setText(item.ingredientName);
                 binding.etQuantity.setText(String.valueOf(item.quantity));
                 if (item.unit != null) {
-                    // Find unit position in spinner
+                    // Find unit position in adapter and set selection
                     for (int i = 0; i < Constants.UNITS.length; i++) {
                         if (Constants.UNITS[i].equals(item.unit)) {
-                            binding.spinnerUnit.setSelection(i);
+                            binding.etUnit.setText(Constants.UNIT_LABELS[i]);
                             break;
                         }
                     }
@@ -127,9 +153,19 @@ public class AddEditPantryFragment extends Fragment {
 
     private void setupButtons() {
         binding.btnSave.setOnClickListener(v -> {
-            String name = binding.etIngredientName.getText().toString();
-            String quantity = binding.etQuantity.getText().toString();
-            String unit = Constants.UNITS[binding.spinnerUnit.getSelectedItemPosition()];
+            String name = binding.etIngredientName.getText().toString().trim();
+            String quantity = binding.etQuantity.getText().toString().trim();
+            String unitLabel = binding.etUnit.getText().toString().trim();
+
+            // Convert label back to unit code
+            String unit = unitLabel;
+            for (int i = 0; i < Constants.UNIT_LABELS.length; i++) {
+                if (Constants.UNIT_LABELS[i].equals(unitLabel)) {
+                    unit = Constants.UNITS[i];
+                    break;
+                }
+            }
+
             viewModel.saveItem(name, quantity, unit, selectedExpiryDate);
         });
 

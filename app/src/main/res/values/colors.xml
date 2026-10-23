@@ -1,49 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Colors (Green theme for pantry/food app) -->
+    <!-- Brand Colors - Fresh Green Theme for Food/Pantry App -->
     <color name="primary">#2E7D32</color>
     <color name="primary_variant">#1B5E20</color>
     <color name="primary_light">#4CAF50</color>
+    <color name="primary_container">#E8F5E9</color>
     <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#1B5E20</color>
 
-    <color name="secondary">#FF8F00</color>
-    <color name="secondary_variant">#FF6F00</color>
+    <color name="secondary">#FF9800</color>
+    <color name="secondary_variant">#F57C00</color>
+    <color name="secondary_light">#FFB74D</color>
+    <color name="secondary_container">#FFF3E0</color>
     <color name="on_secondary">#FFFFFF</color>
+    <color name="on_secondary_container">#E65100</color>
 
-    <!-- Surface & Background -->
+    <color name="tertiary">#6D4C41</color>
+    <color name="tertiary_container">#D7CCC8</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="on_tertiary_container">#3E2723</color>
+
+    <!-- Surface & Background - Material Design 3 -->
     <color name="surface">#FFFFFF</color>
-    <color name="surface_variant">#F5F5F5</color>
-    <color name="on_surface">#1A1A1A</color>
-    <color name="on_surface_variant">#424242</color>
+    <color name="surface_variant">#F0F4F0</color>
+    <color name="surface_container">#F5F5F5</color>
+    <color name="surface_container_high">#E8ECE8</color>
+    <color name="surface_container_highest">#DEE2DE</color>
+    <color name="on_surface">#1C1E1C</color>
+    <color name="on_surface_variant">#444843</color>
+
+    <color name="background">#FAFAFA</color>
+    <color name="on_background">#1C1E1C</color>
 
     <!-- Error / Success / Warning -->
-    <color name="error">#C62828</color>
+    <color name="error">#BA1A1A</color>
     <color name="on_error">#FFFFFF</color>
-    <color name="error_container">#FBE9E7</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#410002</color>
 
     <color name="success">#2E7D32</color>
     <color name="on_success">#FFFFFF</color>
     <color name="success_container">#E8F5E9</color>
+    <color name="on_success_container">#1B5E20</color>
 
-    <color name="warning">#FF8F00</color>
+    <color name="warning">#F57C00</color>
     <color name="on_warning">#FFFFFF</color>
     <color name="warning_container">#FFF3E0</color>
+    <color name="on_warning_container">#3E2723</color>
 
     <!-- Outline / Divider -->
-    <color name="outline">#E0E0E0</color>
-    <color name="outline_variant">#EEEEEE</color>
+    <color name="outline">#747873</color>
+    <color name="outline_variant">#C4C7C3</color>
 
     <!-- Standard -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Text -->
-    <color name="text_primary">#1A1A1A</color>
-    <color name="text_secondary">#616161</color>
+    <!-- Text - Better contrast hierarchy -->
+    <color name="text_primary">#1C1E1C</color>
+    <color name="text_secondary">#444843</color>
+    <color name="text_tertiary">#747873</color>
     <color name="text_disabled">#9E9E9E</color>
     <color name="text_hint">#BDBDBD</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_surface">#1C1E1C</color>
+
+    <!-- Shadow & Elevation -->
+    <color name="shadow">#000000</color>
+    <color name="scrim">#80000000</color>
 
     <!-- Status bar / Navigation -->
     <color name="status_bar_scrim">#80000000</color>
+
+    <!-- Custom accent for highlights -->
+    <color name="accent_fresh">#81C784</color>
+    <color name="accent_warm">#FFB74D</color>
+
+    <!-- TextInputLayout stroke colors -->
+    <color name="text_input_stroke_color">@color/outline_variant</color>
+    <color name="text_input_stroke_color_focused">@color/primary</color>
+    <color name="text_input_stroke_color_error">@color/error</color>
 </resources>

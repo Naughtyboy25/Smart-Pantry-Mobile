@@ -58,7 +58,7 @@ public class SuggestedAdapter extends ListAdapter<SuggestedViewModel.RecipeWithM
         holder.bind(getItem(position));
     }
 
-    static class SuggestedViewHolder extends RecyclerView.ViewHolder {
+    class SuggestedViewHolder extends RecyclerView.ViewHolder {
         private final ItemSuggestedRecipeBinding binding;
 
         SuggestedViewHolder(@NonNull ItemSuggestedRecipeBinding binding) {
