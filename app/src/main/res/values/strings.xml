@@ -18,10 +18,14 @@
     <string name="expiry_date_helper">Tap to select a date</string>
 
     <!-- Suggested Empty State -->
-    <string name="empty_suggested_title">No Recipes Match</string>
-    <string name="empty_suggested_subtitle">Add ingredients to your pantry first. We will show you recipes you can make with what you have!</string>
+    <string name="empty_suggested_title">No Recipes Match Yet</string>
+    <string name="empty_suggested_subtitle">No recipes match your pantry yet — add more ingredients and recipes you can cook right away will appear here.</string>
     <string name="empty_suggested_icon_desc">Recipe book searching for matches</string>
     <string name="empty_suggested_cta">Go to Pantry</string>
+    <string name="match_ready_to_cook">✓ Ready to cook — you have everything</string>
+    <string name="match_missing_ingredients">Missing %1$d: %2$s</string>
+    <string name="suggested_header_ready">Ready to cook</string>
+    <string name="suggested_header_almost">Almost there — missing 1 ingredient</string>
 
     <!-- Settings -->
     <string name="preferences_section">Preferences</string>

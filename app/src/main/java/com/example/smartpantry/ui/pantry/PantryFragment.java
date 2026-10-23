@@ -94,7 +94,11 @@ public class PantryFragment extends Fragment implements PantryAdapter.OnItemClic
                 .setMessage(getString(R.string.confirm_delete_item, item.ingredientName))
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
                     viewModel.deleteItem(item.id);
-                    SnackbarUtils.showSuccess(requireView(), R.string.snack_item_deleted, SnackbarUtils.DURATION_SHORT);
+                    // Offer Undo so a deletion is never permanent by accident
+                    SnackbarUtils.showUndo(requireView(),
+                            getString(R.string.snack_item_deleted),
+                            () -> viewModel.restoreItem(item),
+                            SnackbarUtils.DURATION_LONG);
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();

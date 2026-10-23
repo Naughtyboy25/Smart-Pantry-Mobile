@@ -37,6 +37,13 @@ public class PantryViewModel extends AndroidViewModel {
         repository.deleteById(itemId);
     }
 
+    /** Re-inserts a previously deleted item (used by Undo). */
+    public void restoreItem(PantryItem item) {
+        if (item != null) {
+            repository.insert(item);
+        }
+    }
+
     /** Deletes all expired items (expiry_date < now). */
     public void deleteExpiredItems() {
         repository.deleteExpired(System.currentTimeMillis());

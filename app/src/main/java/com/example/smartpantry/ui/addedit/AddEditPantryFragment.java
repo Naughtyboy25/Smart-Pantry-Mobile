@@ -35,6 +35,8 @@ import java.util.TimeZone;
  */
 public class AddEditPantryFragment extends Fragment {
 
+    private static final String DATE_PICKER_TAG = "DATE_PICKER";
+
     private FragmentAddEditPantryBinding binding;
     private AddEditPantryViewModel viewModel;
     private Long selectedExpiryDate = null;
@@ -92,11 +94,17 @@ public class AddEditPantryFragment extends Fragment {
     }
 
     private void showDatePicker() {
-        // Use MaterialDatePicker for proper theming in light/dark modes
+        // Guard against rapid double-taps showing the picker twice
+        if (getChildFragmentManager().findFragmentByTag(DATE_PICKER_TAG) != null) {
+            return;
+        }
+
+        // Theming comes from the materialDatePickerTheme attribute in the app theme
+        // (ThemeOverlay.SmartPantry.DatePicker). Do NOT pass a dialog theme to
+        // setTheme() here - it crashes layout inflation on some devices.
         MaterialDatePicker<Long> picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select Expiry Date")
                 .setSelection(selectedExpiryDate != null ? selectedExpiryDate : MaterialDatePicker.todayInUtcMilliseconds())
-                .setTheme(R.style.Theme_SmartPantry_MaterialDatePicker)
                 .build();
 
         picker.addOnPositiveButtonClickListener((MaterialPickerOnPositiveButtonClickListener<Long>) selection -> {
@@ -106,7 +114,7 @@ public class AddEditPantryFragment extends Fragment {
             binding.etExpiryDate.setText(sdf.format(new Date(selection)));
         });
 
-        picker.show(requireActivity().getSupportFragmentManager(), "DATE_PICKER");
+        picker.show(getChildFragmentManager(), DATE_PICKER_TAG);
     }
 
     private void loadArguments() {
@@ -125,7 +133,9 @@ public class AddEditPantryFragment extends Fragment {
 
     private void observeViewModel() {
         viewModel.getItem().observe(getViewLifecycleOwner(), item -> {
-            if (item != null) {
+            // Only pre-fill the form when editing an existing item.
+            // In ADD mode the ViewModel emits a blank item which must not overwrite user input.
+            if (item != null && item.id > 0) {
                 binding.etIngredientName.setText(item.ingredientName);
                 binding.etQuantity.setText(String.valueOf(item.quantity));
                 if (item.unit != null) {

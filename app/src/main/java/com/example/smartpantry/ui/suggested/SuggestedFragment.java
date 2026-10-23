@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.smartpantry.R;
 import com.example.smartpantry.databinding.FragmentSuggestedBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Fragment for Suggested Recipes screen (second tab).
  * Displays strictly matchable recipes based on current pantry.
@@ -49,12 +52,39 @@ public class SuggestedFragment extends Fragment implements SuggestedAdapter.OnRe
     }
 
     private void observeSuggestedRecipes() {
-        viewModel.getSuggestedRecipes().observe(getViewLifecycleOwner(), recipes -> {
-            adapter.submitList(recipes);
-            boolean empty = recipes == null || recipes.isEmpty();
-            binding.emptyStateContainer.setVisibility(empty ? View.VISIBLE : View.GONE);
-            binding.rvSuggested.setVisibility(empty ? View.GONE : View.VISIBLE);
+        // Combine the two sections (strict matches + almost-there) into one list with headers
+        viewModel.getSuggestedRecipes().observe(getViewLifecycleOwner(), strict -> {
+            updateAdapter(strict, viewModel.getAlmostThereRecipes().getValue());
         });
+        viewModel.getAlmostThereRecipes().observe(getViewLifecycleOwner(), almost -> {
+            updateAdapter(viewModel.getSuggestedRecipes().getValue(), almost);
+        });
+    }
+
+    private void updateAdapter(List<SuggestedViewModel.RecipeWithMatch> strict,
+                               List<SuggestedViewModel.RecipeWithMatch> almost) {
+        List<SuggestedAdapter.ListItem> items = new ArrayList<>();
+
+        if (strict != null && !strict.isEmpty()) {
+            items.add(new SuggestedAdapter.HeaderItem(
+                    getString(R.string.suggested_header_ready), 0));
+            for (SuggestedViewModel.RecipeWithMatch r : strict) {
+                items.add(new SuggestedAdapter.RecipeItem(r));
+            }
+        }
+
+        if (almost != null && !almost.isEmpty()) {
+            items.add(new SuggestedAdapter.HeaderItem(
+                    getString(R.string.suggested_header_almost), 1));
+            for (SuggestedViewModel.RecipeWithMatch r : almost) {
+                items.add(new SuggestedAdapter.RecipeItem(r));
+            }
+        }
+
+        adapter.submitList(items);
+        boolean empty = items.isEmpty();
+        binding.emptyStateContainer.setVisibility(empty ? View.VISIBLE : View.GONE);
+        binding.rvSuggested.setVisibility(empty ? View.GONE : View.VISIBLE);
     }
 
     private void setupEmptyStateCta() {

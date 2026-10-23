@@ -14,14 +14,22 @@ import com.example.smartpantry.data.repository.RecipeRepository;
 import com.example.smartpantry.util.IngredientMatcher;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
  * ViewModel for Suggested Recipes screen.
- * Reactively combines pantry items + all recipes through IngredientMatcher
- * to produce a live list of strictly matchable recipes.
+ * Reactively combines pantry items + all recipes through IngredientMatcher.
+ *
+ * Per the assignment brief (Section 2.3) the MAIN suggestions list contains ONLY
+ * strictly matchable recipes: every required ingredient must be present in the
+ * pantry in at least the required quantity. Partial matches are excluded.
+ *
+ * As an optional bonus, a clearly separated "Almost There" list shows recipes
+ * missing exactly ONE ingredient.
+ *
  * Uses MediatorLiveData to recompute when either pantry or recipes change.
  * Matching runs on a background thread to avoid blocking the main thread.
  */
@@ -56,6 +64,12 @@ public class SuggestedViewModel extends AndroidViewModel {
                 computeMatchesAsync(pantryItems, recipes);
             }
         });
+        almostThereRecipes.addSource(pantryLive, pantryItems -> {
+            List<Recipe> recipes = recipesLive.getValue();
+            if (recipes != null) {
+                computeMatchesAsync(pantryItems, recipes);
+            }
+        });
 
         // Source 2: Recipes changes (seeding complete)
         suggestedRecipes.addSource(recipesLive, recipes -> {
@@ -64,19 +78,10 @@ public class SuggestedViewModel extends AndroidViewModel {
                 computeMatchesAsync(pantry, recipes);
             }
         });
-
-        // Almost There recipes - same sources
-        almostThereRecipes.addSource(pantryLive, pantryItems -> {
-            List<Recipe> recipes = recipesLive.getValue();
-            if (recipes != null) {
-                computeAlmostThereAsync(pantryItems, recipes);
-            }
-        });
-
         almostThereRecipes.addSource(recipesLive, recipes -> {
             List<PantryItem> pantry = pantryLive.getValue();
             if (pantry != null) {
-                computeAlmostThereAsync(pantry, recipes);
+                computeMatchesAsync(pantry, recipes);
             }
         });
     }
@@ -86,50 +91,45 @@ public class SuggestedViewModel extends AndroidViewModel {
             List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
 
             List<RecipeWithMatch> strictMatches = new ArrayList<>();
-            for (IngredientMatcher.MatchResult mr : results) {
-                if (mr.isStrictMatch) {
-                    // Find recipe name and get ingredient count
-                    for (Recipe r : recipes) {
-                        if (r.id == mr.recipeId) {
-                            int totalIng = recipeRepository.getIngredientsForRecipe(r.id).size();
-                            strictMatches.add(new RecipeWithMatch(r.id, r.name, totalIng, totalIng, true));
-                            break;
-                        }
-                    }
-                }
-            }
-            // Post result back to main thread
-            suggestedRecipes.postValue(strictMatches);
-        });
-    }
-
-    private void computeAlmostThereAsync(List<PantryItem> pantryItems, List<Recipe> recipes) {
-        executor.execute(() -> {
-            List<IngredientMatcher.MatchResult> results = IngredientMatcher.matchAllRecipes(recipes, pantryItems, recipeRepository);
-
             List<RecipeWithMatch> almostMatches = new ArrayList<>();
+
             for (IngredientMatcher.MatchResult mr : results) {
-                if (!mr.isStrictMatch && mr.missingCount == 1) {
-                    for (Recipe r : recipes) {
-                        if (r.id == mr.recipeId) {
-                            int totalIng = recipeRepository.getIngredientsForRecipe(r.id).size();
-                            almostMatches.add(new RecipeWithMatch(r.id, r.name, totalIng, totalIng - 1, false));
-                            break;
+                for (Recipe r : recipes) {
+                    if (r.id == mr.recipeId) {
+                        int totalIng = recipeRepository.getIngredientsForRecipe(r.id).size();
+                        if (mr.isStrictMatch) {
+                            // MAIN list: strictly matchable recipes only
+                            strictMatches.add(new RecipeWithMatch(
+                                    r.id, r.name, totalIng, totalIng,
+                                    true, 0, mr.missingIngredients));
+                        } else if (mr.missingCount == 1) {
+                            // Bonus list: recipes missing exactly one ingredient,
+                            // clearly separated from the strict suggestions.
+                            almostMatches.add(new RecipeWithMatch(
+                                    r.id, r.name, totalIng, totalIng - 1,
+                                    false, 1, mr.missingIngredients));
                         }
+                        break;
                     }
                 }
             }
-            // Post result back to main thread
+
+            // Sort both lists alphabetically by recipe name
+            Collections.sort(strictMatches, (a, b) -> a.name.compareToIgnoreCase(b.name));
+            Collections.sort(almostMatches, (a, b) -> a.name.compareToIgnoreCase(b.name));
+
+            // Post results back to main thread
+            suggestedRecipes.postValue(strictMatches);
             almostThereRecipes.postValue(almostMatches);
         });
     }
 
-    /** Returns strictly matchable recipes as observable LiveData. */
+    /** Returns strictly matchable recipes (main suggestions list) as observable LiveData. */
     public LiveData<List<RecipeWithMatch>> getSuggestedRecipes() {
         return suggestedRecipes;
     }
 
-    /** Returns "Almost There" recipes (missing 1 ingredient) for bonus feature. */
+    /** Returns "Almost There" recipes (missing exactly 1 ingredient) as observable LiveData. */
     public LiveData<List<RecipeWithMatch>> getAlmostThereRecipes() {
         return almostThereRecipes;
     }
@@ -151,13 +151,18 @@ public class SuggestedViewModel extends AndroidViewModel {
         public final int totalIngredients;
         public final int matchedIngredients;
         public final boolean isStrictMatch;
+        public final int missingCount;
+        public final List<String> missingIngredients;
 
-        public RecipeWithMatch(long recipeId, String name, int totalIngredients, int matchedIngredients, boolean isStrictMatch) {
+        public RecipeWithMatch(long recipeId, String name, int totalIngredients, int matchedIngredients,
+                               boolean isStrictMatch, int missingCount, List<String> missingIngredients) {
             this.recipeId = recipeId;
             this.name = name;
             this.totalIngredients = totalIngredients;
             this.matchedIngredients = matchedIngredients;
             this.isStrictMatch = isStrictMatch;
+            this.missingCount = missingCount;
+            this.missingIngredients = missingIngredients != null ? missingIngredients : new ArrayList<>();
         }
     }
 }

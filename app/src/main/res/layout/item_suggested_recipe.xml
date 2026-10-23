@@ -70,7 +70,7 @@
             app:cardCornerRadius="12dp"
             app:cardElevation="0dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toStartOf="@id/ivChevron">
 
             <TextView
                 android:id="@+id/tvIngredientCount"
@@ -98,11 +98,11 @@
             android:textSize="12sp"
             android:textColor="@color/success"
             android:fontFamily="sans-serif-medium"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/tvRecipeName"
             app:layout_constraintStart_toEndOf="@id/cvRecipeIcon"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivChevron"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <!-- Chevron Arrow -->

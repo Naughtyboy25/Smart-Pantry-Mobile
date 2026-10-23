@@ -60,15 +60,8 @@
 
         <!-- TextInputLayout default style -->
         <item name="textInputStyle">@style/Widget.SmartPantry.TextInputLayout</item>
-    </style>
 
-    <!-- MaterialDatePicker theme (Dark Mode) - must extend Theme.MaterialComponents.Dialog for proper layout inflation -->
-    <style name="Theme.SmartPantry.MaterialDatePicker" parent="Theme.MaterialComponents.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_variant</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/on_surface</item>
-        <item name="android:windowBackground">@color/surface</item>
+        <!-- MaterialDatePicker theming (must be a ThemeOverlay, not a Dialog theme) -->
+        <item name="materialCalendarTheme">@style/ThemeOverlay.SmartPantry.DatePicker</item>
     </style>
 </resources>

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.smartpantry.data.entity.PantryItem;
 import com.example.smartpantry.data.repository.PantryRepository;
@@ -25,6 +26,8 @@ public class AddEditPantryViewModel extends AndroidViewModel {
 
     private long editingItemId = -1;
     private boolean isEditMode = false;
+    private LiveData<PantryItem> editingItemSource;
+    private Observer<PantryItem> itemObserver;
 
     public AddEditPantryViewModel(@NonNull Application application) {
         super(application);
@@ -46,11 +49,13 @@ public class AddEditPantryViewModel extends AndroidViewModel {
 
     /** Loads existing pantry item for editing. */
     private void loadItem(long itemId) {
-        repository.getPantryItemById(itemId).observeForever(item -> {
+        itemObserver = item -> {
             if (item != null) {
                 itemLiveData.setValue(item);
             }
-        });
+        };
+        editingItemSource = repository.getPantryItemById(itemId);
+        editingItemSource.observeForever(itemObserver);
     }
 
     /** Returns the current item (editable in ADD mode, pre-filled in EDIT mode). */
@@ -128,6 +133,9 @@ public class AddEditPantryViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
+        if (editingItemSource != null && itemObserver != null) {
+            editingItemSource.removeObserver(itemObserver);
+        }
         repository.shutdown();
     }
 }

@@ -60,6 +60,9 @@
 
         <!-- TextInputLayout default style -->
         <item name="textInputStyle">@style/Widget.SmartPantry.TextInputLayout</item>
+
+        <!-- MaterialDatePicker theming (must be a ThemeOverlay, not a Dialog theme) -->
+        <item name="materialCalendarTheme">@style/ThemeOverlay.SmartPantry.DatePicker</item>
     </style>
 
     <style name="Theme.SmartPantry.NoActionBar">
@@ -204,21 +207,15 @@
         <item name="android:textColorHint">@color/text_hint</item>
     </style>
 
-    <!-- Themed DatePickerDialog - uses app theme for proper light/dark adaptation -->
-    <style name="DatePickerTheme" parent="Theme.SmartPantry">
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowBackground">@color/surface</item>
-        <item name="android:windowMinWidthMajor">90%</item>
-        <item name="android:windowMinWidthMinor">90%</item>
-    </style>
-
-    <!-- MaterialDatePicker theme - must extend Theme.MaterialComponents.Light.Dialog for proper layout inflation -->
-    <style name="Theme.SmartPantry.MaterialDatePicker" parent="Theme.MaterialComponents.Light.Dialog">
+    <!-- MaterialDatePicker overlay - themed with the app palette.
+         NOTE: This must be a ThemeOverlay descendant of ThemeOverlay.MaterialComponents.MaterialCalendar.
+         Passing a full Dialog theme to MaterialDatePicker.Builder.setTheme() crashes layout
+         inflation with "You must supply a layout_width attribute". -->
+    <style name="ThemeOverlay.SmartPantry.DatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/on_surface</item>
-        <item name="android:windowBackground">@color/surface</item>
     </style>
 </resources>
