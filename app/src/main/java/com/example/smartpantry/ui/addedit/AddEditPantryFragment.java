@@ -55,8 +55,9 @@ public class AddEditPantryFragment extends Fragment {
 
     private void setupUnitDropdown() {
         // Create adapter for the exposed dropdown menu (AutoCompleteTextView)
+        // Use custom layout with theme-aware colors
         unitAdapter = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_dropdown_item_1line, Constants.UNIT_LABELS);
+                R.layout.dropdown_item_unit, Constants.UNIT_LABELS);
 
         AutoCompleteTextView autoCompleteUnit = binding.etUnit;
         autoCompleteUnit.setAdapter(unitAdapter);
@@ -91,11 +92,14 @@ public class AddEditPantryFragment extends Fragment {
         if (selectedExpiryDate != null) {
             cal.setTimeInMillis(selectedExpiryDate);
         }
-        new DatePickerDialog(requireContext(), (view, year, month, dayOfMonth) -> {
-            cal.set(year, month, dayOfMonth, 23, 59, 59);
-            selectedExpiryDate = cal.getTimeInMillis();
-            binding.etExpiryDate.setText(String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth));
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+        // Use themed DatePickerDialog with app's theme
+        DatePickerDialog dialog = new DatePickerDialog(requireContext(), R.style.DatePickerTheme,
+                (view, year, month, dayOfMonth) -> {
+                    cal.set(year, month, dayOfMonth, 23, 59, 59);
+                    selectedExpiryDate = cal.getTimeInMillis();
+                    binding.etExpiryDate.setText(String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth));
+                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
     }
 
     private void loadArguments() {

@@ -203,4 +203,14 @@
         <item name="placeholderTextColor">@color/text_disabled</item>
         <item name="android:textColorHint">@color/text_hint</item>
     </style>
+
+    <!-- Themed DatePickerDialog -->
+    <style name="DatePickerTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:windowBackground">@color/surface</item>
+    </style>
 </resources>
