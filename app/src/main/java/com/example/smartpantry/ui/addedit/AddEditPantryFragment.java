@@ -1,6 +1,5 @@
 package com.example.smartpantry.ui.addedit;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,14 @@ import com.example.smartpantry.R;
 import com.example.smartpantry.databinding.FragmentAddEditPantryBinding;
 import com.example.smartpantry.util.Constants;
 import com.example.smartpantry.util.SnackbarUtils;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Fragment for Add/Edit Pantry Item screen.
@@ -88,18 +92,21 @@ public class AddEditPantryFragment extends Fragment {
     }
 
     private void showDatePicker() {
-        Calendar cal = Calendar.getInstance();
-        if (selectedExpiryDate != null) {
-            cal.setTimeInMillis(selectedExpiryDate);
-        }
-        // Use themed DatePickerDialog with app's theme
-        DatePickerDialog dialog = new DatePickerDialog(requireContext(), R.style.DatePickerTheme,
-                (view, year, month, dayOfMonth) -> {
-                    cal.set(year, month, dayOfMonth, 23, 59, 59);
-                    selectedExpiryDate = cal.getTimeInMillis();
-                    binding.etExpiryDate.setText(String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth));
-                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        dialog.show();
+        // Use MaterialDatePicker for proper theming in light/dark modes
+        MaterialDatePicker<Long> picker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select Expiry Date")
+                .setSelection(selectedExpiryDate != null ? selectedExpiryDate : MaterialDatePicker.todayInUtcMilliseconds())
+                .setTheme(R.style.Theme_SmartPantry_MaterialDatePicker)
+                .build();
+
+        picker.addOnPositiveButtonClickListener((MaterialPickerOnPositiveButtonClickListener<Long>) selection -> {
+            selectedExpiryDate = selection;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getDefault());
+            binding.etExpiryDate.setText(sdf.format(new Date(selection)));
+        });
+
+        picker.show(requireActivity().getSupportFragmentManager(), "DATE_PICKER");
     }
 
     private void loadArguments() {

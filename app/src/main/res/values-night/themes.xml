@@ -61,4 +61,12 @@
         <!-- TextInputLayout default style -->
         <item name="textInputStyle">@style/Widget.SmartPantry.TextInputLayout</item>
     </style>
+
+    <!-- MaterialDatePicker theme (Dark Mode) -->
+    <style name="Theme.SmartPantry.MaterialDatePicker" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+    </style>
 </resources>

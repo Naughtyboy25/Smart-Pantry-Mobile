@@ -81,4 +81,8 @@
     <color name="text_input_stroke_color">@color/outline_variant</color>
     <color name="text_input_stroke_color_focused">@color/primary</color>
     <color name="text_input_stroke_color_error">@color/error</color>
+
+    <!-- MaterialDatePicker colors -->
+    <color name="date_picker_day_bg">@color/surface</color>
+    <color name="date_picker_day_text">@color/on_surface</color>
 </resources>
